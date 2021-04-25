@@ -1,0 +1,37 @@
+ENT
+sign 2 3 Welcome;to;MacLunky!^;Use;arrow;keys;to;move
+sign 6 3 Use;space;to;jump
+sign 10 1 Use;b;to;place;a;bomb.^Watch;out!
+sign 21 3 Use;v;to;throw;a;rope.^Climb;with;up;and;down!
+sign 23 0 Place;a;rope;in;front^while;holding;down
+sign 23 5 Press;tab;to;use;objects.
+chest 22 5
+sign 19 5 Watch;out;for;enemies!^Whip;them;with;left;shift!
+snake 18 6
+sign 10 5 You;can;also;jump;on;them!
+snake 9 6
+sign 10 9 Jump;over;arrows!
+arrowTrap 16 9 -1
+sign 19 9 Falling;on;spikes;will;kill;you!
+spike 21 12
+sign 15 12 Pick;objects;up;with;down^and;left;shift!
+chest 14 12
+sign 12 12 Put;them;down;or^throw;them!
+sign 6 11 You've;reached;the;end^of;MacLunky!
+spike 5 13
+spider 6 11
+MAP
+11111111111111111111100001
+11111110000100000001101101
+11111100111111111100101101
+10&00001111111111110001101
+11111111111111111111111101
+11111111100000000000000001
+11111111001111100001111111
+11111111011111111111111111
+11111111011000000011111111
+11111111000000000000000111
+11111111111111111111000111
+111110N0000011111111000111
+11111011111000000000000111
+11111011111111111111111111

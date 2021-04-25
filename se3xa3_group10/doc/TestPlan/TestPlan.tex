@@ -1,0 +1,2340 @@
+\documentclass[12pt, titlepage]{article}
+
+\usepackage{longtable}
+\usepackage{booktabs}
+\usepackage{tabularx}
+\usepackage{hyperref}
+\hypersetup{
+    colorlinks,
+    citecolor=black,
+    filecolor=black,
+    linkcolor=red,
+    urlcolor=blue
+}
+\usepackage[round]{natbib}
+\usepackage{parskip}
+\usepackage{amsmath}
+\usepackage{soul}
+\usepackage{xcolor}
+
+\title{SE 3XA3: Test Plan}
+
+\author{Team 10, MacLunky
+		\\ Albert Zhou, zhouj103
+		\\Abeer Al-Yasiri, alyasira
+		\\ Niyatha Rangarajan, rangaran
+}
+
+\date{\today}
+
+\begin{document}
+
+\maketitle
+
+\pagenumbering{roman}
+\tableofcontents
+\listoftables
+\listoffigures
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+February 27, 2021 & Albert, Abeer, Niyatha & Version 0 made\\
+\textcolor{red}{March 30, 2021} & \textcolor{red}{Abeer}& \textcolor{red}{Test Schedule and unit testing}\\
+\textcolor{red}{April 1, 2021} & \textcolor{red}{Niyatha} & \textcolor{red}{Spider testing}\\
+\textcolor{red}{April 10, 2021} & \textcolor{red}{Albert} & \textcolor{red}{Additional test cases}\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+
+\newpage
+
+\pagenumbering{arabic}
+
+%This document ...
+
+\section{General Information}
+
+\subsection{Purpose}
+
+The purpose of the document is to describes the testing plan, procedures, and tools the development team will use to validate and verify the system functions and behaviour. All of the test cases describe in the document have been set before the final implementation is completed or applying testing in the development process. This document will be used in the next phases of the project to verify that the development team is on the right track and that the system meets the requirements.
+
+\subsection{Scope}
+
+The scope of the test plan is to guide the development team in the testing phase of the project by providing an outline of the required test cases and type of testing the development team needs to adapt to verify the system functionality.
+
+\subsection{Acronyms, Abbreviations, and Symbols}
+	
+\begin{table}[hbp]
+\caption{\textbf{Table of Abbreviations}} \label{TableAbbreviations}
+
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Abbreviation} & \textbf{Definition} \\
+\midrule
+FPS & Frames per second\\
+SRS & Software requirements specication\\
+PoC & Proof of concept\\
+\bottomrule
+\end{tabularx}
+
+\end{table}
+
+\begin{table}[!htbp]
+\caption{\textbf{Table of Definitions}} \label{TableDefinitions}
+
+\begin{tabularx}{\textwidth}{p{3cm}X}
+\toprule
+\textbf{Term} & \textbf{Definition}\\
+\midrule
+% Unit Testing & \\
+% Dynamic Testing & \\
+% Static Testing & \\
+% Manual Testing & \\
+% Automated Testing & \\
+% Functional Testing & \\
+% Structural Testing & \\
+\bottomrule
+\end{tabularx}
+
+\end{table}	
+
+\subsection{Overview of Document}
+
+The test plan document will give a complete description of the project's testing techniques, tools, and schedule of execution. Also, the document will outline specific tests cases with description of how to execute the testing and goal of each. The test cases will be primarily used to provide verification of the system following the requirements. 
+
+\section{Plan}
+	
+\subsection{Software Description}
+
+MacLunky is a re-implementation of the open source Pylunky game that is a Python version of the original Spelunky game. The objective of the game is to reach the end point of the game by advancing through the game map without losing all life points. The game will feature enemy characters and traps that will present as challenges throughout the game. However, the player will have access to weapons and tools that if used properly will provide a defense mechanism for the player and means to ensure the player survives the game course. The player will start with heartStartAmount life points and weapons that can be used at any point in the game. If the player wins the game it will end with inputting username that is saved with the game; else the game will shut down and close the window.
+
+\subsection{Test Team}
+
+The test team for this project will be the development team of MacLunky. Each team member will be responsible for writing and executing tests suites for the modules. The work breakdown of the testing suites will be assigned in the next project milestone.
+
+\subsection{Automated Testing Approach}
+
+The project will not be using automated testing approach in the testing phase of the project. The testing team decided to use manual testing approach. The reason behind this decision is because the project involves the redevelopment of game the main focus of testing will be to provide a fully functional and enjoyable gaming experience. The testing will showcase the importance of validating user interactions with the system and presenting an easy to use implementation of the original game that is more challenging. Another reason for not using automated testing is that the development team don't have access to the appropriate tools required to executes tests in this approach therefore using manual testing approach increase the testing team confidence in executing test correctly and efficiently. 
+
+\subsection{Testing Tools}
+
+The testing plan will not specify any testing tools that will directly used for the system testing of the project since the team has adapted a manual testing approach. The only tools the tests will be using are command-line executions and executable windows to generate the game and run the tests on. However, \st{the project will use coverage metric tool called Coverage.py that will measure the code coverage of the program and provide a coverage report} \textcolor{red}{the team decided not to dive into automated testing tools for coverage metrics due to the time constraints on the project}. 
+
+\subsection{Testing Schedule}
+		
+See Gantt Chart under the Gitlab repository of the project under the Project Schedule folder.\\
+The following table will outline the testing results of the FR testing and NFR testing done for the POC and Rev0 demonstrations. 
+\begin{center}
+{\color{red}\begin{longtable}{ |c|c|c|c| } 
+\hline
+Test Number & Test Result & Test Date \\
+\hline
+3.1.1.1 & Pass & Feb 2021 \\
+3.1.1.2 & Pass & Apr 2021\\
+3.1.1.3 & Pass & Feb 2021\\
+3.1.2.1 & Pass & Feb 2021\\
+3.1.2.2 & Pass & Feb 2021\\
+3.1.2.3 & Pass & Feb 2021\\
+3.1.2.4 & Pass & Feb 2021\\
+3.1.2.5 & Pass & Feb 2021\\
+3.1.2.6 & Pass & Feb 2021\\
+3.1.2.7 & Pass & Feb 2021\\
+3.1.2.8 & Pass & Apr 2021\\
+3.1.2.9 & Pass & Apr 2021\\
+3.1.2.10 & Pass & Apr 2021\\
+3.1.2.11 & Pass & Apr 2021\\
+3.1.3.1 & Pass & Feb 2021\\
+3.1.3.2 & Pass & Feb 2021\\
+3.1.3.3 & Pass & Feb 2021\\
+3.1.3.4 & Pass & Feb 2021\\
+3.1.3.5 & Pass & Feb 2021\\
+3.1.3.6 & Pass & Feb 2021\\
+3.1.3.7 & Pass & Feb 2021\\
+3.1.3.8 & Pass & Feb 2021\\
+3.1.3.9 & Pass & Feb 2021\\
+3.1.3.10 & Pass & Feb 2021\\
+3.1.3.11 & Pass & Feb 2021\\
+3.1.3.12 & Pass & Feb 2021\\
+3.1.3.13 & Pass & Feb 2021\\
+3.1.3.14 & Pass & Feb 2021\\
+3.1.3.15 & Pass & Feb 2021\\
+3.1.3.16 & Pass & Feb 2021\\
+3.1.3.17 & Pass & Feb 2021\\
+3.1.3.18 & Pass & Apr 2021\\
+3.1.3.19 & Pass & Feb 2021\\
+3.1.3.20 & Pass & Feb 2021\\
+3.1.3.21 & Pass & Feb 2021\\
+3.1.3.22 & Pass & Feb 2021\\
+3.1.3.23 & Pass & Feb 2021\\
+3.1.3.24 & Pass & Feb 2021\\
+3.1.3.25 & Pass & March 2021\\
+3.1.3.26 & Pass & Feb 2021\\
+3.1.3.27 & Pass & Apr 2021\\
+3.1.3.28 & Pass & Feb 2021\\
+3.1.3.29 & Pass & Feb 2021\\
+3.1.3.30 & Pass & Feb 2021\\
+3.1.3.31 & Pass & Feb 2021\\
+3.1.3.32 & Pass & Feb 2021\\
+3.1.3.33 & Pass & Feb 2021\\
+3.1.4.1 & Pass & Feb 2021\\
+3.1.4.2 & Pass & Feb 2021\\
+3.1.4.3 & Pass & Feb 2021\\
+3.1.4.4 & Pass & Feb 2021\\
+3.1.4.5 & Pass & Feb 2021\\
+3.1.4.6 & Pass & Feb 2021\\
+3.1.4.7 & Pass & Feb 2021\\
+3.1.4.8 & Pass & Feb 2021\\
+3.1.5.1 & Pass & Feb 2021\\
+3.1.5.2 & Pass & Feb 2021\\
+3.1.5.3 & Pass & Feb 2021\\
+3.1.5.4 & Pass & Feb 2021\\
+3.1.5.5 & Pass & March 2021\\
+3.1.5.6 & Pass & March 2021\\
+3.1.6.1 & Pass & Feb 2021\\
+3.1.6.2 & Pass & Feb 2021\\
+3.1.6.3 & Pass & Feb 2021\\
+3.1.7.1 & Pass & Feb 2021\\
+3.1.7.2 & Pass & March 2021\\
+3.1.7.3 & Pass & March 2021\\
+3.1.7.4 & Pass & March 2021\\
+3.1.7.5 & Pass & March 2021\\
+3.1.7.6 & Pass & March 2021\\
+3.1.7.7 & Pass & March 2021\\
+3.1.8.1 & Pass & Feb 2021\\
+3.1.8.2 & Pass & March 2021\\
+3.1.8.3 & Pass & March 2021\\
+3.1.8.4 & Pass & March 2021\\
+3.1.9.1 & Pass & Feb 2021\\
+3.1.9.2 & Pass & March 2021\\
+3.1.9.3 & Pass & March 2021\\
+3.1.9.4 & Pass & March 2021\\
+3.1.10.1 & Pass & Feb 2021\\
+3.1.10.2 & Pass & Feb 2021\\
+3.1.10.3 & Pass & Feb 2021\\
+3.1.11.1 & Pass & Feb 2021\\
+3.1.11.2 & Pass & Feb 2021\\
+3.1.11.3 & Pass & Feb 2021\\
+3.1.11.4 & Pass & Feb 2021\\
+3.1.11.5 & Pass & Apr 2021\\
+3.1.12.1 & Pass & Apr 2021\\
+3.1.12.2 & Pass & Apr 2021\\
+3.1.12.3 & Pass & Apr 2021\\
+3.1.12.4 & Pass & Apr 2021\\
+3.1.12.5 & Pass & Apr 2021\\
+3.1.12.6 & Pass & Apr 2021\\
+3.1.13.1 & Pass & Feb 2021\\
+3.1.13.2 & Pass & Feb 2021\\
+3.1.13.3 & Pass & Feb 2021\\
+3.1.13.4 & Pass & Apr 2021\\
+3.1.13.5 & Pass & Feb 2021\\
+3.1.13.6 & Pass & Feb 2021\\
+3.1.13.7 & Pass & Apr 2021\\
+3.1.13.8 & Pass & Feb 2021\\
+3.1.13.9 & Pass & Feb 2021\\
+3.1.13.10 & Pass & Feb 2021\\
+3.1.13.11 & Pass & Feb 2021\\
+3.1.13.12 & Pass & Apr 2021\\
+3.1.13.13 & Pass & Apr 2021\\
+3.1.13.14 & Pass & Apr 2021\\
+3.1.14.1 & Pass & Feb 2021\\
+3.1.14.2 & Pass & Feb 2021\\
+3.1.14.3 & Pass & Feb 2021\\
+3.1.15.1 & Pass & Apr 2021\\
+3.1.15.2 & Pass & Apr 2021\\
+3.1.15.3 & Pass & Apr 2021\\
+3.1.16.1 & Pass & Feb 2021\\
+3.1.16.2 & Pass & Feb 2021\\
+3.1.16.3 & Pass & Feb 2021\\
+3.1.16.4 & Pass & Feb 2021\\
+3.1.17.1 & Pass & Feb 2021\\
+3.1.17.2 & Pass & Feb 2021\\
+3.1.17.3 & Pass & Feb 2021\\
+3.2.1.1 & Pass & Apr 2021\\
+3.2.1.2 & Pass & Apr 2021\\
+3.2.1.3 & Pass & Apr 2021\\
+3.2.1.4 & Pass & Apr 2021\\
+3.2.1.5 & Pass & Apr 2021\\
+3.2.1.6 & Pass & Apr 2021\\
+3.2.2.1 & Pass & Apr 2021\\
+3.2.2.2 & Pass & Apr 2021\\
+3.2.3.1 & Pass & Apr 2021\\
+3.2.3.2 & Pass & Apr 2021\\
+3.2.3.3 & Pass & Apr 2021\\
+3.2.3.4 & Pass & Apr 2021\\
+%\multirow{3}{4em}{Multiple row} & cell2 & cell3 \\ 
+%& cell5 & cell6 \\ 
+%& cell8 & cell9 \\ 
+\hline
+\end{longtable}}
+\end{center}
+
+\section{System Test Description}
+	
+\subsection{Tests for Functional Requirements}
+
+\subsubsection{System}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.1.1: & System launch from source files \\
+    \bf{Requirements}: & FR1 \\
+    \bf{Description}: & Tests if the game launches correctly from the source files. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The source files has been downloaded and unzipped. \\
+    \bf{Input}: & The game is executed with Python3. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The game opens in a new window with a level and the player. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.1.2: & System launch from executable \\
+    \bf{Requirements}: & FR2 \\
+    \bf{Description}: & Tests if the game launches correctly from an executable. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The executable has been downloaded and unzipped. \\
+    \bf{Input}: & The executable is run. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The game opens in a new window with a level and the player. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.1.3: & System termination \\
+    \bf{Requirements}: & FR2 \\
+    \bf{Description}: & Tests if the game terminates correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The game is running. \\
+    \bf{Input}: & keyEsc is pressed. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The game terminates and the window closes. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Display}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.1: & Camera position \\
+    \bf{Requirements}: & FR3, 4 \\
+    \bf{Description}: & Tests if the camera is positioned correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & cam() is called. \\
+    \bf{Output}: & Camera coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 - \text{ camWidth}/2 $ and $0 \leq x2 \leq \text{ mapWidth}$ and $y2 = y1 - \text{ camHeight}/2 $ and $0 \leq y2 \leq \text{ mapHeight}$. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.2: & Camera move \\
+    \bf{Requirements}: & FR3, 4 \\
+    \bf{Description}: & Tests if the camera is moving correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & move() is called. \\
+    \bf{Output}: & Camera coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 - \text{ camWidth}/2 $ and $0 \leq x2 \leq \text{ mapWidth}$ and $y2 = y1 - \text{ camHeight}/2 $ and $0 \leq y2 \leq \text{ mapHeight}$. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.3: & Health display \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the health is displayed correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ hearts. \\
+    \bf{Input}: & ui() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n$ hearts are displayed horizontally in the top left corner. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.4: & Health update \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the health is updated correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ hearts and takes $m$ damage. \\
+    \bf{Input}: & damage() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n - m$ hearts are displayed horizontally in the top left corner. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.5: & Gold display \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the gold is displayed correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ gold. \\
+    \bf{Input}: & ui() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n$ amount of gold is displayed in the top left corner under hearts. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.6: & Gold update \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the gold is updated correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ gold and is near a gold bar. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n + \text{valGoldBar}$ amount of gold is displayed in the top left corner under hearts. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.7: & Game over \\
+    \bf{Requirements}: & FR74 \\
+    \bf{Description}: & Tests if the game over screen is displayed correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $0$ hearts. \\
+    \bf{Input}: & ui() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The game over screen is displayeds. \\
+    \hline
+\end{tabular}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.8: & Bombs display \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the number of bombs is displayed correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ bombs. \\
+    \bf{Input}: & ui() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n$ number of bombs is displayed in the top left corner next to hearts. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.9: & Bomb update \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the bombs is updated correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ bombs and is near a bombPile object. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n + \text{valBombPile}$ bombs is displayed in the top left corner next to hearts. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.10: & Ropes display \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the number of ropes is displayed correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ ropes. \\
+    \bf{Input}: & ui() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n$ number of ropes is displayed in the top left corner next to bombs. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.2.11: & Rope update \\
+    \bf{Requirements}: & FR5 \\
+    \bf{Description}: & Tests if the ropes is updated correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has $n$ ropes and is near a ropePile object. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $n + \text{valRopePile}$ bombs is displayed in the top left corner next to bombs. \\
+    \hline
+\end{tabular}
+}
+
+\subsubsection{Player}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.1: & Player Jumps\\
+    \bf{Requirements}: & FR7, 15\\
+    \bf{Description}: &  Tests if the player is able to jump when the corresponding control input is sent by the user.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player in a stationary game state with y-direction speed of zero recorded. \\
+    \bf{Input}: & Keyboard function called with pressing keyJump down stroke. \\
+    \bf{Output}: & Player y-direction speed at maximum of jump.\\
+    \bf{Pass}: & Player y-direction speed is playerJumpSpeed\\  
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.2: & Player Moves Left \\
+    \bf{Requirements}: & FR7, 14\\
+    \bf{Description}: & Tests if the player is able to move in the left direction when the corresponding control input is sent by the user.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player in a stationary game state with player's x-position recorded and x-speed is zero\\
+    \bf{Input}: & Keyboard function called with pressing keyLeft down stroke\\
+    \bf{Output} : & Player's x-position.\\
+    \bf{Pass} : & Player's x-position decreased by playerSpeed\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.3: & Player Moves Right \\
+    \bf{Requirements}: & FR7, 14\\
+    \bf{Description}: & Tests if the player is able to move in the left direction when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player in a stationary game state with player's x-position recorded and x-speed is zero  \\
+    \bf{Input}: & Keyboard function called with pressing keyRight down stroke \\
+    \bf{Output} & Player's x-position. \\
+    \bf{Pass} : & Player's x-position increased by playerSpeed\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.4: & Player Can't Jump at an Occurring Jump Action.\\
+    \bf{Requirements}: & FR15\\
+    \bf{Description}: &  Tests if the player is able to jump while being in a jumping position when the corresponding control input is sent by the user.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player in a moving game state of a jump with y-direction speed of playerJumpSpeed. \\
+    \bf{Input}: & Keyboard function called with pressing keyJump down stroke. \\
+    \bf{Output}: & Player y-position at maximum of jump.\\
+    \bf{Pass}: & Player y-position at maximum of jump has increased by playerJumpHeight.\\  
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.5: & Player Collect\\
+    \bf{Requirements}: & FR8\\
+    \bf{Description}: & Tests the player's interaction with the treasure box by being able to collect the gold placed on the ground by the game system.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player is at the same x-position as the gold  and the player's gold score is zero. \\
+    \bf{Input}: & Keyboard function called with pressing keyInt down stroke.\\
+    \bf{Output} : & Player gold score.\\
+    \bf{Pass}: & Player gold score is valGoldBar.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.6: & Player Opens Box\\
+    \bf{Requirements}: & FR8\\
+    \bf{Description}: & Tests the player's interaction with the treasure box by being able to open the box placed on the ground by the game system.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & Player is at the same x-position as the gold  and the game system has one treasure box object in the system's list of objects. \\
+    \bf{Input}: & Keyboard function called with pressing keyInt down stroke.\\
+    \bf{Output} : & List of the system objects on display in the game.\\
+    \bf{Pass}: & List of the system objects on display in the game has no treasure box entity\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.7: & Player Stomps Enemy\\
+    \bf{Requirements}: & FR37\\
+    \bf{Description}: & Tests if the player is able to inflict damage upon an enemy character with the stomping player-enemy interaction. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is falling on the enemy object with speed of fallSpeed and distance less than fallDmgDist. \\
+    \bf{Input}: & Keyboard function called with move or jump key being pressed. \\
+    \bf{Output}: & Player location (x, y) and list of the system objects displayed in the game.\\
+    \bf{Pass}: & Player's position is equal to the enemies position at stomping and the list of system objects have no record of the enemy.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.8: & Player Releases Rope\\
+    \bf{Requirements}: & FR24\\
+    \bf{Description}: & Tests if the player is able to release the rope when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is interacting with rope at a position as the rope object.\\
+    \bf{Input}: & Keyboard function called with pressing keyJump down stroke. \\
+    \bf{Output}: & Player's (x, y) position\\
+    \bf{Pass}: & Player is no longer interacting with the rope but the player's (x, y) position is different than the rope.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.9: & Player Grabs Rope.\\
+    \bf{Requirements}: & FR22.\\
+    \bf{Description}: & Tests if the player is able to get on the rope when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is within range to interact with the rope object.\\
+    \bf{Input}: & Keyboard function called with pressing keyUp down stroke. \\
+    \bf{Output}: & Player's (x, y) position\\
+    \bf{Pass}: & Player is interacting with the rope and the same position as the rope.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.10: & Player Climbs Up\\
+    \bf{Requirements}: & FR23.\\
+    \bf{Description}: & Tests if the player is able to climb up when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is interacting with rope at a position as the rope object with enough rope distance in the positive y-direction.\\
+    \bf{Input}: & Keyboard function called with pressing keyUp down stroke. \\
+    \bf{Output}: & Player's (x, y) position\\
+    \bf{Pass}: & Player is still interacting with the rope but the player's y-position increased by playerClimbSpeed\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.11: & Player Climbs Down\\
+    \bf{Requirements}: & FR23.\\
+    \bf{Description}: & Tests if the player is able to climb down when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is interacting with rope at a position as the rope object with enough rope distance in the negative y-direction.\\
+    \bf{Input}: & Keyboard function called with pressing keyDown down stroke. \\
+    \bf{Output}: & Player's (x, y) position\\
+    \bf{Pass}: & Player is still interacting with the rope but the player's y-position decreased by playerClimbSpeed.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.12: & Player Throws Object \\
+    \bf{Requirements}: & FR10, 18\\
+    \bf{Description}: &Tests if the player is able to throw object when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & Player is stationary with throwable object type in their hands and empty space in fornt of the player. \\
+    \bf{Input}: & Keyboard function called with pressing keyThrow down stroke. \\
+    \bf{Output}: & Throwable object speed and player's hands state.\\
+    \bf{Pass}: & Throwable object speed is throwSpeed and the player's hands are empty\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.13: & Player Picks up Object \\
+    \bf{Requirements}: & FR17.\\
+    \bf{Description}: & Tests if the player is able to pick up object on the ground when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at the same (x, y) as the interactive object with the player's hand state is empty.\\
+    \bf{Input}: & Keyboard function called with pressing keyPick down stroke. \\
+    \bf{Output}: & Player's hand state.\\
+    \bf{Pass}: & Player's hand state is occupied.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.14: & Player Use Bomb \\
+    \bf{Requirements}: & FR9\\
+    \bf{Description}: & Tests if the player is able to use and place bomb in the game when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at an empty space position. \\
+    \bf{Input}: & Keyboard function called with pressing keyBomb down stroke. \\
+    \bf{Output}: & New bomb object created and its  position.\\
+    \bf{Pass}: & New bomb position is the player's position when the user pressed the key.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.15: &  Player Use Weapon\\
+    \bf{Requirements}: & FR12\\
+    \bf{Description}: & Tests if the player is able to use weapon in the game when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at an empty space position. \\
+    \bf{Input}: & Keyboard function called with pressing keyweap down stroke.\\
+    \bf{Output}: & New weapon object created and its position.\\
+    \bf{Pass}: & New bomb position is the player's position when the user pressed the key.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.16: &  Player Use Weapon For Period of Time and Cant use anything else\\
+    \bf{Requirements}: & FR27\\
+    \bf{Description}: & Tests if the player is able to use weapon once every weaponDelay and can't use anything else at the same time in the game when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at an empty space position. \\
+    \bf{Input}: & Keyboard function called with pressing keyweap down stroke and pressing keyPick.\\
+    \bf{Output}: & New weapon object created and its position and the player hands state.\\
+    \bf{Pass}: & New bomb position is the player's position when the user pressed the key and the returns can't pick up message with player's hand used.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.17: &  Player Hits and Damages Snake Enemy.\\
+    \bf{Requirements}: & FR26, 25\\
+    \bf{Description}: & Tests if the player is able to damage snake character upon hitting it with weapon.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at position where the snake is with weaponAttack.\\
+    \bf{Input}: & Keyboard function called with pressing keyweap down stroke.\\
+    \bf{Output}: & Snake health.\\
+    \bf{Pass}: & Snake health is reduced by weaponDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.18: &  Player Hits and Damages Spider Enemy.\\
+    \bf{Requirements}: & FR26, 25\\
+    \bf{Description}: & Tests if the player is able to damage spider character upon hitting it with weapon.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at position where the spider is with weaponAttack.\\
+    \bf{Input}: & Keyboard function called with pressing keyweap down stroke.\\
+    \bf{Output}: & Spider health.\\
+    \bf{Pass}: & Spider health is reduced by weaponDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.19: & Player Use Rope \\
+    \bf{Requirements}: & FR10\\
+    \bf{Description}: & Tests if the player is able to use and place rope in the game when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary and at an empty space position. \\
+    \bf{Input}: & Keyboard function called with pressing keyRope down stroke. \\
+    \bf{Output}: & New rope object created and its  position. \\
+    \bf{Pass}: & New rope position is the player's position when the user pressed the key.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.20: &  Player Falls\\
+    \bf{Requirements}: & FR28.\\
+    \bf{Description}: & Tests if the player's response of no longer being on solid ground is falling. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player is stepping onto empty space with no block underneath. \\
+    \bf{Input}: & Keyboard function that moves the player.\\
+    \bf{Output}: & Player speed.\\
+    \bf{Pass}: & Player speed is equal to fallSpeed.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.21: &  Player Lands Back on the Ground.\\
+    \bf{Requirements}: & FR28.\\
+    \bf{Description}: & Tests if the player's response after being in the air is landing on the closes ground block underneath. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player is in the air with a ground block underneath that is of a distance less than fallDmgDist. \\
+    \bf{Input}: & Keyboard function that moves the player. \\
+    \bf{Output}: & Player position and speed.\\
+    \bf{Pass}: & Player speed is zero and position is at the closet block underneath.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.22: &  Player Can't move past blocks.\\
+    \bf{Requirements}: & FR28.\\
+    \bf{Description}: & Tests if the player is able to move on a block when the corresponding control input is sent by the user. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player is in one position away from a block to the left. \\
+    \bf{Input}: & Keyboard function called with pressing keyLeft down stroke.\\
+    \bf{Output}: & Player position and speed.\\
+    \bf{Pass}: & Player speed is PlayerSpeed and position remains the same.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.23: &  Player Can't move outside the map.\\
+    \bf{Requirements}: & FR28.\\
+    \bf{Description}: & Tests if the player is able to move on a block when the corresponding control input is sent by the user. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player is in one position away from the map boundary to the left. \\
+    \bf{Input}: & Keyboard function called with pressing keyLeft down stroke.\\
+    \bf{Output}: & Player position and speed.\\
+    \bf{Pass}: & Player speed is PlayerSpeed and position remains the same.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.24: & Player Crouches.\\
+    \bf{Requirements}: & FR11. \\
+    \bf{Description}: & Tests if the player is able to be in a crouch position when the corresponding control input is sent by the user \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player is stationary. \\
+    \bf{Input}: & Keyboard function called with pressing keyCrouch down stroke. \\
+    \bf{Output} & Player state.\\
+    \bf{Pass}: & Player state is crouching.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.25: & Player Health Reduced When Falling From a Peak \\
+    \bf{Requirements}: & FR29, 30. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon falling from high position in the game.\\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is falling at a speed of fallSpeed and the fall distance is fallDmgDist. \\
+    \bf{Input}: & Keyboard function that moves the player.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health reduced by fallDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.26: & Player Health Reduced When Hit by Snake Enemy.\\
+    \bf{Requirements}: & FR36. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon being hit by a snake character in the game. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at a position within attack area of the snake character that is moving at a speed of snakeSpeed.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health reduced by snakeDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.27: & Player Health Reduced When Hit by Spider Enemy. \\
+    bf{Requirements}: & FR36. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon being hit by a spider character in the game. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at a position within spiderSense attack area of the spider character that is stationary. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health is reduced by spiderDmg. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.28: & Player Health Reduced When Hit by Arrow.\\
+    bf{Requirements}: & FR71. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon being hit by an arrow in the game. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at a position within arrowSense attack range of the arrow trap box and the arrow is moving arrowSpeed towards the player.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health is reduced by arrowDmg. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.29: & Player Health Reduced When Overlap with Spike.\\
+    bf{Requirements}: & FR73. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon overlapping with a spike trap. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at the same position as the spike trap.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health reduced by spikeDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.30: & Player Health Reduced When hit by bomb explosion.\\
+    bf{Requirements}: & FR16. \\
+    \bf{Description}: & Tests if the player health system is reduced correctly upon overlapping with a bomb explosion. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at the same position as the stationary bomb.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health reduced by bombDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.31: & Player Killed When Health Reaches Zero.\\
+    bf{Requirements}: & FR74. \\
+    \bf{Description}: & Tests if the player is removed from the game upon having zero health. \\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is stationary at a position within an attack that will cause a damage of heartStartAmount.\\
+    \bf{Input}: & None\\
+    \bf{Output}: & List of player object.\\
+    \bf{Pass}: & Empty list.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.32: & Player Dodges a Moving Arrow Attack.\\
+    bf{Requirements}: & FR7. \\
+    \bf{Description}: & Tests if the player is able to dodge an arrow attack by jumping.\\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The player with a health of heartStartAmount is moving at playerSpeed with an arrow moving toward the player at arrowSpeed.\\
+    \bf{Input}: & Keyboard function called with pressing keyJump down stroke.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health remains the same after passing the arrow attack.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.3.33: & Player Starts the game with heartStartAmount hearts, bombStartAmount bombs, and ropeStartAmount ropes..\\
+    bf{Requirements}: & FR13. \\
+    \bf{Description}: & Tests if the player is player starts the game with the right amount of resources.\\
+    \bf{Type}: & Unit Testing (dynamic, manual) \\
+    \bf{Initial State}: & The game is being generated.\\
+    \bf{Input}: & Game file initiated.\\
+    \bf{Output}: & Player health, bombs, and ropes.\\
+    \bf{Pass}: & Player has heartStartAmount hearts, bombStartAmount bombs, and ropeStartAmount ropes.\\
+    \hline
+\end{tabular}
+
+\subsubsection{Bomb}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.1: & Bomb placed \\% on block \\
+    \bf{Requirements}: & FR9 \\
+    \bf{Description}: & Tests if a bomb placed by the player has the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\% and is on a block. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & Bomb is placed with coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1$ and $y2 = y1 + \text{playerHeight} - \text{bombHeight}$\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.2: & Bomb time set \\
+    \bf{Requirements}: & FR16 \\
+    \bf{Description}: & Tests if a bomb placed with the correct time. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb has been placed. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & The time remaining on the bomb \\
+    \bf{Pass}: & The time remaining is bombTime seconds.\\
+    \hline
+\end{tabular}
+
+% \begin{tabular}{|l|p{10cm}|}
+%     \hline
+%     \bf{Test} 3.1.4.3: & Bomb falling. \\
+%     \bf{Requirements}: & None \\
+%     \bf{Description}: & Tests if a bomb in the air is falling at the correct speed after 1 second. \\
+%     \bf{Type}: & Unit test (dynamic, manual) \\
+%     \bf{Initial State}: & Custom game state where a bomb in the air with coordinates $x1$ and $y1$. \\
+%     \bf{Input}: & gravity() is called. \\
+%     \bf{Output}: & Bomb coordinates $x2$ and $y2$. \\
+%     \bf{Pass}: & $x2 = x1$ and $y2 = y1 + \text{fall speed}$ \\
+%     \hline
+% \end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.3: & Bomb explosion time \\
+    \bf{Requirements}: & FR16 \\
+    \bf{Description}: &  Tests if a bomb explodes after the correct amount of time.\\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb is placed. \\
+    \bf{Input}: & tick() is called \\
+    \bf{Output}: & The time remaining on the bomb \\
+    \bf{Pass}: &  The bomb explodes if it has $0$ remaining seconds.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.4: & Bomb explosion size \\
+    \bf{Requirements}: & FR16 \\
+    \bf{Description}: &  Tests if the explosion of a bomb is the correct size.\\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb has exploded. \\
+    \bf{Input}: & explode is called(). \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: &  The explosion has a diameter of bombSize blocks.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.5: & Bomb explosion destruction \\
+    \bf{Requirements}: & FR16 \\
+    \bf{Description}: &  Tests if a bomb's explosion deals the correct amount of damage to all entities and destroys all blocks in range \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb placed on a block has exploded with a nearby player, snake, chest, and arrow trap. \\
+    \bf{Input}: & None. \\
+    \bf{Output}: & None.  \\
+    \bf{Pass}: &  The block is destroyed and the player, snake, chest, and arrow trap take bombDmg damage.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.6: & Bomb pickup \\
+    \bf{Requirements}: & FR17 \\
+    \bf{Description}: &  Tests if a picked up bomb has the correct coordinates \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player with coordinates $x1$ and $y1$ on a block places a bomb. \\
+    \bf{Input}: & pickup() is called \\
+    \bf{Output}: & Bomb coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 + (\text{playerWidth} - \text{bombWidth})/2$ and $y2 = y1 + (\text{playerHeight} - \text{bombHeight})/2$ \\
+    \hline
+\end{tabular}
+
+% \begin{tabular}{|l|p{10cm}|}
+%     \hline
+%     \bf{Test} : & Bomb put down \\
+%     \bf{Requirements}: & None \\
+%     \bf{Description}: &  Tests if a picked up bomb is put down with the correct coordinates \\
+%     \bf{Type}: & Unit test (dynamic, manual) \\
+%     \bf{Initial State}: & Custom game state where a player with coordinates $x1$ and $y1$ has picked up a bomb. \\
+%     \bf{Input}: & putdown() is called \\
+%     \bf{Output}: & Bomb coordinates $x2$ and $y2$. \\
+%     \bf{Pass}: & $x2 = x1$ and $y2 = y1 + \text{playerHeight} - \text{bombHeight}$\\
+%     \hline
+% \end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.7: & Bomb throw \\
+    \bf{Requirements}: & FR18 \\
+    \bf{Description}: & Tests if a thrown bomb is moving at the correct speed. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb has been thrown. \\
+    \bf{Input}: & throw() is called. \\
+    \bf{Output}: & Bomb speed. \\
+    \bf{Pass}: & Bomb speed is throwSpeed horizontally. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.4.8: & Bomb throw explosion \\
+    \bf{Requirements}: & FR19 \\
+    \bf{Description}: & Tests if a thrown bomb explodes upon contact with a block. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a bomb has been thrown towards a block. \\
+    \bf{Input}: & move() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Bomb explodes upon contact with the block. \\
+    \hline
+\end{tabular}
+
+% \begin{tabular}{|l|p{10cm}|}
+%     \hline
+%     \bf{Test} : & Bomb destroyed \\
+%     \bf{Requirements}: & None \\
+%     \bf{Description}: & Tests if a bomb explodes upon being destroyed. \\
+%     \bf{Type}: & Unit test (dynamic, manual) \\
+%     \bf{Initial State}: & Custom game state where a bomb is placed. \\
+%     \bf{Input}: & damage() is called. \\
+%     \bf{Output}: & Bomb's health. \\
+%     \bf{Pass}: & Bomb explodes if its health is $0$. \\
+%     \hline
+% \end{tabular}
+
+\subsubsection{Rope}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.1: & Rope throw \\
+    \bf{Requirements}: & FR10 \\
+    \bf{Description}: & Tests if a rope placed by the player has the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & Rope is placed coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1$ and $y2 = y1$ \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.2: & Rope throw speed \\
+    \bf{Requirements}: & FR10 \\
+    \bf{Description}: & Tests if a thrown rope is moving at the correct speed. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a rope has been thrown. \\
+    \bf{Input}: & throw() is called. \\
+    \bf{Output}: & Rope speed. \\
+    \bf{Pass}: & Rope speed is $-$throwSpeed vertically. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.3: & Rope max height \\
+    \bf{Requirements}: & FR20 \\
+    \bf{Description}: & Tests if a thrown rope stops after reaching the maximum height at the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a rope is moving with coordinates $x1$ and $y1$. \\
+    \bf{Input}: & move() is called. \\
+    \bf{Output}: & Rope coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 / \text{blockSize} * \text{blockSize} + \text{blockSize}/2$ and $y2 = y1 / \text{blockSize} * \text{blockSize} + \text{ropeLength} * \text{blockSize}$ \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.4: & Rope attachment in block \\
+    \bf{Requirements}: & FR20 \\
+    \bf{Description}: & Tests if a thrown rope stops in a block at the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a rope is moving with coordinates $x1$ and $y1$. \\
+    \bf{Input}: & move() is called. \\
+    \bf{Output}: & Rope coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 / \text{blockSize} * \text{blockSize} + \text{blockSize}/2$ and $y2 = y1 / \text{blockSize} * \text{blockSize}$ \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.5: & Rope extension \\
+    \bf{Requirements}: & FR21 \\
+    \bf{Description}: & Tests if an attached rope extends down correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where an attached rope has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & makeRope() is called. \\
+    \bf{Output}: & The Rope end with coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1$ and $y2 = y1 + n * \text{blockSize where } n = \text{The number of empty blocks below the rope} \leq \text{ropeLength}$ \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.5.6: & Rope crouch throw \\
+    \bf{Requirements}: & FR11 \\
+    \bf{Description}: & Tests if a rope placed by the player while crouched has the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & Rope is placed coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 + \text{blockSize}$ and $y2 = y1$ \\
+    \hline
+\end{tabular}
+
+\subsubsection{Weapon}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.6.1: & Weapon swing \\
+    \bf{Requirements}: & FR25 \\
+    \bf{Description}: & Tests if the weapon appears at the correct coordinates. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where player has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & Keyboard function called with pressing keyWeap down stroke. \\
+    \bf{Output}: & Weapon is placed coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1 + \text{playerWidth}$ and $y2 = y1 + \text{playerHeight}/2$ \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.6.1: & Weapon damage \\
+    \bf{Requirements}: & FR26 \\
+    \bf{Description}: & Tests if the weapon damages enemies correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state with a player and a nearby snake. \\
+    \bf{Input}: & Keyboard function called with pressing keyWeap down stroke. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Snake loses weaponDmg health \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.6.1: & Weapon delay \\
+    \bf{Requirements}: & FR27 \\
+    \bf{Description}: & Tests the delay of the weapon. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state with a player. \\
+    \bf{Input}: & Keyboard function called with pressing keyWeap down stroke. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The weapon can be used only once every weaponDelay seconds. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Gold}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.1: & Gold bar pickup \\
+    \bf{Requirements}: & FR32, 48 \\
+    \bf{Description}: & Tests if picking up a gold bar adds the correct amount to total gold. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ gold and is near a gold bar. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's gold increases by valGoldBar. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.2: & Ruby pickup \\
+    \bf{Requirements}: & FR32, 45 \\
+    \bf{Description}: & Tests if picking up a ruby adds the correct amount to total gold. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ gold and is near a ruby. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's gold increases by valRuby. \\
+    \hline
+\end{tabular}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.3: & Emerald pickup \\
+    \bf{Requirements}: & FR32, 47 \\
+    \bf{Description}: & Tests if picking up an emerald adds the correct amount to total gold. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ gold and is near an emerald. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's gold increases by valEmerald. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.4: & Sapphire pickup \\
+    \bf{Requirements}: & FR32, 46 \\
+    \bf{Description}: & Tests if picking up a sapphire adds the correct amount to total gold. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ gold and is near a sapphire. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's gold increases by valSapphire. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.5: & Diamond pickup \\
+    \bf{Requirements}: & FR32, 44 \\
+    \bf{Description}: & Tests if picking up a diamond adds the correct amount to total gold. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ gold and is near a diamond. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's gold increases by valDiamond. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.6: & Bomb pile pickup \\
+    \bf{Requirements}: & FR32, 88 \\
+    \bf{Description}: & Tests if picking up a bomb pile adds the correct number to bombs. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ bombs and is near a bomb pile. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's bombs increases by valBombPile. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.7.7: & Rope pile pickup \\
+    \bf{Requirements}: & FR32, 89 \\
+    \bf{Description}: & Tests if picking up a rope pile adds the correct number to ropes. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player has $0$ ropes and is near a rope pile. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & Player's ropes increases by valRopePile. \\
+    \hline
+\end{tabular}
+}
+
+\subsubsection{Sprite}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.8.1: & Idle sprite \\
+    \bf{Requirements}: & FR34 \\
+    \bf{Description}: & Tests if the correct player sprite is used while idle. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player is idle. \\
+    \bf{Input}: & changeState() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player has the idle sprite. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.8.2: & Falling sprite \\
+    \bf{Requirements}: & FR34 \\
+    \bf{Description}: & Tests if the correct player sprite is used while in the air. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player is in the air. \\
+    \bf{Input}: & changeState() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player has the falling sprite. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.8.3: & Climbing sprite \\
+    \bf{Requirements}: & FR34 \\
+    \bf{Description}: & Tests if the correct player sprite is used while climbing. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player is climbing. \\
+    \bf{Input}: & changeState() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player has the climbing sprite. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.8.4: & Crouching sprite \\
+    \bf{Requirements}: & FR34 \\
+    \bf{Description}: & Tests if the correct player sprite is used while crouching. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player is crouching. \\
+    \bf{Input}: & changeState() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player has the crouching sprite. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Chest}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.9.1: & Chest placement \\
+    \bf{Requirements}: & FR39 \\
+    \bf{Description}: & Tests if a chest has the correct coordinates based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a chest has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $x1$ and $y1$ are correct based on the map. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.9.2: & Chest open \\
+    \bf{Requirements}: & FR40, 41, 42, 43 \\
+    \bf{Description}: & Tests if a chest is opened correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a chest has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & Gold bar or ruby with coordinate $x2$ and $y2$. \\
+    \bf{Pass}: & $x2 = x1$ and $y2 = y1$ and the chest is removed from the game. \\
+    \hline
+\end{tabular}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.9.3: & Chest pickup \\
+    \bf{Requirements}: & FR91 \\
+    \bf{Description}: &  Tests if a picked up chest has the correct coordinates \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player with coordinates $x1$ and $y1$ on a block and is near a chest. \\
+    \bf{Input}: & pickup() is called \\
+    \bf{Output}: & Chest coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & The chest is in the player's hand. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.9.4: & Chest throw \\
+    \bf{Requirements}: & FR91 \\
+    \bf{Description}: & Tests if a thrown chest is moving at the correct speed. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a chest has been thrown. \\
+    \bf{Input}: & throw() is called. \\
+    \bf{Output}: & Chest speed. \\
+    \bf{Pass}: & Chest speed is throwSpeed horizontally. \\
+    \hline
+\end{tabular}
+}
+
+\subsubsection{Enemy map placement}
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.10.1: & Enemy entities like spider and snake are placed on the map by reading the coordinates from the map file.\ \\
+    \bf{Requirements}: & FR79\\
+    \bf{Description}: & If the enemy is created inside a solid block it has no functionality in the game \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Map coordinates for enemies are selected so it coincides with inside a block. Player's health is H. The player approaches the block containing the enemy.\\
+    \bf{Input}: & ReadMap and Mapcell generate the game map in the main function \\
+    \bf{Output}: & The enemy entities are motionless and do not attack or reduce health of the player\\
+    \bf{Pass}: & The enemy entities do not move whether or not the player is in range by a block and the player's health remains as H.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.10.2: & Player-enemy Defense - Whip \\
+    \bf{Requirements}: & FR12\\
+    \bf{Description}: & The enemy is damaged when a whip is latched onto the enemy\\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & The player object approaches the enemy object such that the player is able to overlap the whip object onto the enemy \\
+    \bf{Input}: & Keyboard function called with pressing lshift key.\\
+    \bf{Output}: & The enemy loses health by weaponDmg from initial health H \\
+    \bf{Pass}: &  The enemy  damaged health is the original health(H)- weaponDmg\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.10.3: & Player-enemy Defense - Stomp \\
+    \bf{Requirements}: & FR37\\
+    \bf{Description}: & The enemy is killed when a player jumps onto a enemy entity\\
+    \bf{Type}: & Dynamic and Unit testing\\
+    \bf{Initial State}: & The player object approaches the enemy object such that the player jump onto the enemy \\
+    \bf{Input}: & ent.damage() is called to reduce the enemy's health when the objects overlap\\
+    \bf{Output}: & The enemy loses health by weaponDmg from initial health H \\
+    \bf{Pass}: &  The enemy  damaged health is the original health(H)- stompDmg\\
+    \hline
+\end{tabular}
+
+\subsubsection{Snake}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.11.1: & Snake creation\\
+    \bf{Requirements}: & FR50, FR52\\
+    \bf{Description}: & The snake entities are placed all around the map at the start of the game\\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & The player starts the game \\
+    \bf{Input}: & Map object is created using the class MapObj and ReadMap. \\
+    \bf{Output}: & The snake is seen moving in a straight line turning at solid blocks at different points of the map. \\
+    \bf{Pass}: &  The coordinates of the snake in the map file match the initial starting positions of the snakes that appear on the game map\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.11.2: & Snake moves towards the right and alters direction upon a solid block (moves left).\ \\
+     \bf{Requirements}: & FR51 \\
+    \bf{Description}: & Tests whether the snake switches to the opposite direction upon coming in contact with a solid block \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Snake entities created by an in-game map file placing them at specific map locations. \\
+    \bf{Input}: & No input, snake entity and solid blocks are created is generated by the game \\
+    \bf{Output}: & snake changes initial right direction towards the left\\
+    \bf{Pass}: & Snake oscillates right to left and left to right upon contact of a solid block with snakeSpeed.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.11.3: & Snake attacks a player on the way of its straightline path of movement.\ \\
+    \bf{Requirements}: & FR54 \\
+    \bf{Description}: & Tests whether the player's health is reduced by snakeDmg when the snake entity overlaps with the player.  \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Snake entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$ \\
+    \bf{Input}: & No input, snake entity is created is generated by the game \\
+    \bf{Output}: & Player health reduces by snakeDmg \\
+    \bf{Pass}: & Player health is H-snakeDmg\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.11.4: & Snake attacks the player killing the player\ \\
+    \bf{Requirements}: & FR54 \\
+    \bf{Description}: & Tests whether the player dies if the health of the player is less than or equal to the snakeDmg  \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Snake entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$ \\
+    \bf{Input}: & No input, snake entity is created is generated by the game \\
+    \bf{Output}: & Player health reduces to 0 resulting in game over\\
+    \bf{Pass}: & Player health is 0\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.11.5: & Player dodges snake by jumping over it\ \\
+    \bf{Requirements}: & FR15 \\
+    \bf{Description}: & Tests whether the player is able to jump over the snake \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Snake entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$ \\
+    \bf{Input}: & The upward arrow keyboard input is pressed \\
+    \bf{Output}: & The player jumps over the snake without reducing their own health\\
+    \bf{Pass}: & Player health is H and the snake still exists and is in motion on the map. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Spider}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.1: & Spider creation\\
+    \bf{Requirements}: & FR55 \\
+    \bf{Description}: & The spider entities are placed all around the map at the start of the game\\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & The player starts the game \\
+    \bf{Input}: & Map object is created using the class MapObj and ReadMap. \\
+    \bf{Output}: & The spider is seen  dormant on certain map locations waiting for the player to come in range of \textcolor{red}{4 blocks} from it. \\
+    \bf{Pass}: &  The coordinates of the spider in the map file match the initial starting positions of the spider that appear on the game map\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.2: & Spider jumps on the player if the player is within a range. \\
+    \bf{Requirements}: & FR56 \\
+    \bf{Description}: & Tests whether the spider and player's relative position fit the attack range of the spider which a block size.\\
+    \bf{Type}:  &  Unit test (dynamic, manual)    \\
+    \bf{Initial State}: & Spider entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$. Spider and player's x position are less than \textcolor{red}{4 *} 32 units that is a block width. \\
+    \bf{Input}: & No input, spider entity is created is generated by the game \\
+    \bf{Output}: & \textcolor{red}{Spider attacks the player and then cool offs and continues to attack the player if the player is still in range.}  \\
+    \bf{Pass}: & \textcolor{red}{The spider takes the same x and y coordinates to attack the player before it cools off for a specified cool off time}\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.3: & Spider attacks the player by jumping on them reducing their health \\
+    \bf{Requirements}: & FR62 \\
+    \bf{Description}: & Test whether the player's health reduces for the time the player stays within the attack range of the spider.\\
+    \bf{Type}:  &  Unit test (dynamic, manual)    \\
+    \bf{Initial State}: & Spider entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$. Spider and player's x position are less than \textcolor{red}{4 *} 32 units that is a \textcolor{red}{4} block width. \\
+    \bf{Input}: & No input, spider entity is created is generated by the game \\
+    \bf{Output}: & Player health reduces by spiderDmg continously till player moves away from the spider by \textcolor{red}{4 blocks}. \\
+    \bf{Pass}: & Player health is H-spiderDmg and keeps reducing by spiderDmg till player and spider x coordinates differ by \textcolor{red}{4 *} 32 units.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.4: & \textcolor{red}{The spider remains dormant during the cool off stage after attacking the player in range.}\\
+    \bf{Requirements}: & FR60 \\
+    \bf{Description}: & Test the relative positions of the spider and player have to be greater than \textcolor{red}{4} blocks to cause the spider to detach from the player.\\
+    \bf{Type}:  &  Unit test (dynamic, manual)    \\
+    \bf{Initial State}: & Spider entities created by an in-game map file placing them at specific map locations.\\
+    \bf{Input}: & No input, spider entity is created is generated by the game \\
+    \bf{Output}: & Spider and player coordinates differ by $>$ \textcolor{red}{4 *}32 units.\\
+    \bf{Pass}: & If the x coordinates of the player and spider are $>$ \textcolor{red}{4 *}32 the spider should remain stationery at \textcolor{red}{4 blocks away from the player. The player's health remains unchanged.}\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.5: & Spider attacks the player killing the player\ \\
+    \bf{Requirements}: & FR62 \\
+    \bf{Description}: & Tests whether the player dies if the health of the player is less than or equal to the spiderDmg  \\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+     
+    \bf{Initial State}: & Spider entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$. \\
+    \bf{Input}: & No input, spider entity is created is generated by the game \\
+    \bf{Output}: & Player health reduces to 0 resulting in game over\\
+    \bf{Pass}: & Player health is 0\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.12.6: & Spider continuously attacks the player killing the player\ \\
+    \bf{Requirements}: & FR62 \\
+    \bf{Description}: & Tests whether the player dies if the player continues to stay in range of the spider that is a less than or equal to \textcolor{red}{4} blocks away.\\
+    \bf{Type}:  &  Unit test (dynamic, manual)   \\
+    \bf{Initial State}: & Spider entities created by an in-game map file placing them at specific map locations. Player has health of $\mathbf{H}$. \\
+    \bf{Input}: & No input, spider entity is created is generated by the game \\
+    \bf{Output}: & Player health continously reduces by spiderDmg and finally reduces to 0 resulting in game over\\
+    \bf{Pass}: & Player health is 0\\
+    \hline
+\end{tabular}
+
+\subsubsection{Arrow Trap}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.1: & Arrow Trap Box Generated With The Game Starting.\\
+    \bf{Requirements}: & FR63\\
+    \bf{Description}: & Tests the existence of the trap in the game is generated correctly.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The game is starting by running the game file with trap box object specified at position (x,y) on the map.\\
+    \bf{Input}: & Game file initiated. \\
+    \bf{Output}: & List of the trap objects in the game.\\
+    \bf{Pass}: & List of trap objects in the game include an arrow trap box object.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.2: & Arrow Trap Box is placed on a block.\\
+    \bf{Requirements}: & FR64\\
+    \bf{Description}: & Tests the existence of the trap in the game is generated correctly.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The game is starting by running the game file with trap box object specified at position (x,y) on the map.\\
+    \bf{Input}: & Game file initiated. \\
+    \bf{Output}: & Position of the trap object and position of blocks.\\
+    \bf{Pass}: & Position of the trap object is above a block position by 1.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.3: & Arrow Trap Box Detects Player Approach from Left.\\
+    \bf{Requirements}: & FR65, 66, 67\\
+    \bf{Description}: & Tests if the arrow trap box detects the player approach the box position correctly. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is moving at playerSpeed toward the trap box position from the left and it is within the arrowSense range.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & List of the arrow objects in the game.\\
+    \bf{Pass}: & List of arrow objects in the game includes arrowNum new arrows that was created by the trap.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.4: & Arrow Trap Box Detects Player Approach from Right.\\
+    \bf{Requirements}: & FR65, 66, 67\\
+    \bf{Description}: & Tests if the arrow trap box detects the player approach the box position correctly. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player is moving at playerSpeed toward the trap box position from the right and it is within the arrowSense range. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & List of the arrow objects in the game. \\
+    \bf{Pass}: & List of arrow objects in the game includes arrowNum new arrows that was created by the trap. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.5: & Arrow Trap Box Can't Shoot Arrow When there is an arrow in action shot by the same box.\\
+    \bf{Requirements}: & FR67\\
+    \bf{Description}: & Tests if the arrow box generates only one arrow upon detecting a player from the left and then the player moves to the right. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The player was detected by the arrow trap box within the arrowSense range from the left but at the same time the player changes position to the right and enters the area of arrowSense range again.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & List of arrow objects in the game.\\
+    \bf{Pass}: & List of arrow objects in the game has only one arrow object created.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.6: & Arrow Trap Box Shoots Arrow Toward the Player from Left.\\
+    \bf{Requirements}: & FR65, 66\\
+    \bf{Description}: & Tests if the arrow is shot in the correct direction where the player was detected left of the trap box.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow trap box detected the player that is approaching from the left.\\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Arrow speed and direction of movement.\\
+    \bf{Pass}: & Arrow speed is arrowSpeed and it is moving in the left direction (negative x-direction). \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.7: & Arrow Trap Box Shoots Arrow Toward the Player from Right.\\
+    \bf{Requirements}: & FR65, 66\\
+    \bf{Description}: & Tests if the arrow is shot in the correct direction where the player was detected right of the trap box. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow trap box detected the player that is approaching from the right. \\
+    \bf{Input}: & None. \\
+    \bf{Output}: & Arrow speed and direction of movement. \\
+    \bf{Pass}: & Arrow speed is arrowSpeed and it is moving in the right direction (positive x-direction) \\
+    \hline
+\end{tabular}
+
+%\begin{tabular}{|l|p{10cm}|}
+%    \hline
+%    \bf{Test} : & Arrow Can't Switch Direction After Firing It From the Arrow Trap Box.\\
+%    \bf{Description}: & Tests if the arrow continues moving in the same direction even after the player goes in the opposite direction from where the player was detected.\\
+%    \bf{Type}: & Unit Test (dynamic, manual) \\
+%    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from but the player is placed in the other direction.\\
+%    \bf{Input}: & \\
+%    \bf{Output}: & Arrow direction and speed.\\
+%    \bf{Pass}: & Arrow direction remains the same and speed stays constant at arrowSpeed.\\
+%    \hline
+%\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.8: & Arrow Hits the Static Player.\\
+    \bf{Requirements}: & FR71\\
+    \bf{Description}: & Tests if the arrow collision with a static player is successful that results in decreasing the player's health. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from. \\
+    \bf{Input}: &None. \\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health was reduced by arrowDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.9: & Arrow Hit the Moving Player.\\
+    \bf{Requirements}: & FR71\\
+    \bf{Description}: & Tests if the arrow collision with a moving player is successful that results in decreasing the player's health. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health was reduced by arrowDmg.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.10: & Arrow fly in a straight line unaffected by gravity.\\
+    \bf{Requirements}: & FR69\\
+    \bf{Description}: & Tests if the arrow stays at the same level throughout its movement from when it was shot by the trap. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Arrow y-position.\\
+    \bf{Pass}: & Arrow y-position remains constant.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.11: & Arrow fly stops when encountering an object in the game.\\
+    \bf{Requirements}: & FR70\\
+    \bf{Description}: & Tests if the arrow will stop shooting when colliding with an object in the game. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Arrow speed.\\
+    \bf{Pass}: & Arrow speed is zero.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.12: & Arrow self destructs when encountering an object in the game.\\
+    \bf{Requirements}: & FR70\\
+    \bf{Description}: & Tests if the arrow will cease to exist when colliding with an object in the game. \\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The arrow is moving in the direction at which the player was detected from. \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & List of arrow objects.\\
+    \bf{Pass}: & Empty list of arrow objects.\\
+    \hline
+\end{tabular}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.13: & Arrow pickup \\
+    \bf{Requirements}: & FR90 \\
+    \bf{Description}: &  Tests if a picked up arrow has the correct coordinates \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a player with coordinates $x1$ and $y1$ on a block and is near an arrow. \\
+    \bf{Input}: & pickup() is called \\
+    \bf{Output}: & Arrow coordinates $x2$ and $y2$. \\
+    \bf{Pass}: & The arrow is in the player's hand. \\
+    \hline
+\end{tabular}
+}
+
+\textcolor{red}{
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.13.14: & Arrow throw \\
+    \bf{Requirements}: & FR90 \\
+    \bf{Description}: & Tests if a thrown arrow is moving at the correct speed. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where an arrow has been thrown. \\
+    \bf{Input}: & throw() is called. \\
+    \bf{Output}: & Arrow speed. \\
+    \bf{Pass}: & Arrow speed is throwSpeed horizontally. \\
+    \hline
+\end{tabular}
+}
+
+\subsubsection{Spike}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.14.1: & Spike Trap Generated With The Game Starting. \\
+    \bf{Requirements}: & FR63\\
+    \bf{Description}: & Tests the existence of the trap in the game is generated correctly. \\
+    \bf{Type}: & Unit Test (dynamic, manual). \\
+    \bf{Initial State}: & The game is starting by running the game file with spike object specified at position (x, y) on the map. \\
+    \bf{Input}: & Game file initiated.\\
+    \bf{Output}: & List of the trap objects in the game.\\
+    \bf{Pass}: & List of trap objects in the game include an spike trap object.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.14.2: & Spike Trap is placed on a block.\\
+    \bf{Requirements}: & FR72\\
+    \bf{Description}: & Tests the existence of the trap in the game is generated correctly.\\
+    \bf{Type}: & Unit Test (dynamic, manual) \\
+    \bf{Initial State}: & The game is starting by running the game file with trap box object specified at position (x,y) on the map.\\
+    \bf{Input}: & Game file initiated.\\
+    \bf{Output}: & Position of the trap object and position of blocks.\\
+    \bf{Pass}: & Position of the trap object is above a block position by 1.\\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.14.3: & Spike Damages Player.\\
+    \bf{Requirements}: & FR73\\
+    \bf{Description}: & Tests if the spike damages the player when the player steps on the trap. \\
+    \bf{Type}: & Unit Test (dynamic, manual). \\
+    \bf{Initial State}: & The player has collided with the static spike trap and they are both at the same position (x, y). \\
+    \bf{Input}: & None.\\
+    \bf{Output}: & Player health.\\
+    \bf{Pass}: & Player health was reduced by spikeDmg.\\
+    \hline
+\end{tabular}
+
+\subsubsection{Game Ending}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.15.1: & Exit door \\
+    \bf{\textcolor{red}{Requirements}}: & \textcolor{red}{FR75}\\
+    \bf{Description}: & Tests if the game ends when reaching the exit door. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where the player is near the exit door. \\
+    \bf{Input}: & use() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player wins. \\
+    \hline
+\end{tabular}
+
+%\begin{tabular}{|l|p{10cm}|}
+%    \hline
+%    \bf{Test} 3.1.15.2: & Name input \\
+%    \bf{Description}: & Tests if the user can input their name. \\
+%    \bf{Type}: & Unit test (dynamic, manual) \\
+%    \bf{Initial State}: & Custom game state where the player has won. \\
+%    \bf{Input}: & None. \\
+%    \bf{Output}: & None. \\
+%    \bf{Pass}: & The user can enter a name up to nameLength characters. \\
+%    \hline
+%\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.15.2: & Score save \\
+    \bf{\textcolor{red}{Requirements}}: & \textcolor{red}{FR75, 76}\\
+    \bf{Description}: & Tests if the user name and score are saved. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where the player has won and entered their name. \\
+    \bf{Input}: & User's name and score. \\
+    \bf{Output}: & Score save file. \\
+    \bf{Pass}: & The user name and score is save to the file. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.15.3: & Score display \\
+    \bf{\textcolor{red}{Requirements}}: & \textcolor{red}{FR77}\\
+    \bf{Description}: & Tests if the scores are displayed. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state with a non-empty score save file. \\
+    \bf{Input}: & keyScoreboard is pressed. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The top scores are displayed. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Level}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.16.1: & Level creation \\
+    \bf{Requirements}: & FR78, 79 \\
+    \bf{Description}: & Tests if a level is created correctly based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The game has launched. \\
+    \bf{Input}: & ReadMap() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & All blocks, doors, and entities are as specified in the map. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.16.2: & Player starting location \\
+    \bf{Requirements}: & FR80 \\
+    \bf{Description}: & Tests if the player is placed correctly based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The game has launched. \\
+    \bf{Input}: & ReadMap() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The player starts at the entrance door. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.16.3: & Clear path \\
+    \bf{Requirements}: & FR81 \\
+    \bf{Description}: & Tests if there is a clear path in the level. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The game has launched. \\
+    \bf{Input}: & ReadMap() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & There is a sequence of empty blocks from the entrance door to the exit door. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.16.4: & Block types \\
+    \bf{Requirements}: & FR82 \\
+    \bf{Description}: & Tests if all blocks are correct based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & The game has launched. \\
+    \bf{Input}: & ReadMap() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & All blocks are either solid or empty as specified in the map. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Sign}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.17.1: & Sign placement \\
+    \bf{Requirements}: & FR85 \\
+    \bf{Description}: & Tests if a sign has the correct coordinates based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state where a sign has coordinates $x1$ and $y1$. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & $x1$ and $y1$ are correct based on the map. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.17.2: & Sign text \\
+    \bf{Requirements}: & FR86 \\
+    \bf{Description}: & Tests if a sign has the correct text based on the map. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state with a sign. \\
+    \bf{Input}: & makeEnt() is called. \\
+    \bf{Output}: & Sign message. \\
+    \bf{Pass}: & Sign message is correct based on the map. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.1.17.3: & Sign reading \\
+    \bf{Requirements}: & FR87 \\
+    \bf{Description}: & Tests if a sign displays the message correctly. \\
+    \bf{Type}: & Unit test (dynamic, manual) \\
+    \bf{Initial State}: & Custom game state with a player in front of a sign. \\
+    \bf{Input}: & None. \\
+    \bf{Output}: & None. \\
+    \bf{Pass}: & The sign message is displayed at the bottom of the screen. \\
+    \hline
+\end{tabular}
+
+\subsection{Tests for Nonfunctional Requirements}
+
+\subsubsection{Usability Testing}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.1: & Game feeling \\
+    \bf{Requirements} : & NFR1 \\
+    \bf{Description}: & Tests if the feeling of the game matches expectations. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & Users are given 10 minutes to play the game. Passes if 80\% of players feel like they're playing Spelunky. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.2: & Immersion \\
+    \bf{Requirements} : & NFR2 \\
+    \bf{Description}: & Tests if users feeling like they are in the game. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & Users are given 10 minutes to play the game. Passes if 80\% of players feel like they feel like the player himself. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.3: & Control feeling \\
+    \bf{Requirements} : & NFR3, NFR9 \\
+    \bf{Description}: & Tests if the controls create instant changes. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & All inputs made by the user immediately move the character. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.4: & Game understanding \\
+    \bf{Requirements} : & NFR4, NFR5 \\
+    \bf{Description}: & Tests if the game provides users with a good understanding of it. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & Users are given 10 minutes to play the game. Passes if 80\% of players can play without outside help. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.5: & Game progress \\
+    \bf{Requirements} : & NFR6 \\
+    \bf{Description}: & Tests if the game provides users with a good understanding of their progress. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & Signs are located in major parts of the game detailing progress. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.1.6: & Game text \\
+    \bf{Requirements} : & NFR7 \\
+    \bf{Description}: & Tests if the game has clear and legible text. \\
+    \bf{Type}: & Usability(dynamic, manual, functional) \\
+    \bf{Pass}: & All game text is size 10 Verdana and is legible to users. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Stress Testing}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.2.1: & Large maps \\
+    \bf{Requirements} : & NFR10 \\
+    \bf{Description}: & Tests the game with a 1000 by 1000 map. \\
+    \bf{Type}: & Stress(dynamic, manual, functional) \\
+    \bf{Pass}: & The game operate normally in at least 30 fps. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.2.2: & Large number of entities \\
+    \bf{Requirements} : & NFR10 \\
+    \bf{Description}: & Tests the game with a 1000 entities. \\
+    \bf{Type}: & Stress(dynamic, manual, functional) \\
+    \bf{Pass}: & The game operate normally in at least 30 fps. \\
+    \hline
+\end{tabular}
+
+\subsubsection{Performance Testing}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.3.1: & Game response time \\
+    \bf{Requirements} : & NFR8 \\
+    \bf{Description}: & Tests the game's response time. \\
+    \bf{Type}: & Performance(dynamic, manual, functional) \\
+    \bf{Pass}: & The game responds to all user inputs in at least 10ms. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.3.2: & Game frame rate \\
+    \bf{Requirements} : & NFR10 \\
+    \bf{Description}: & Tests the game's framerate. \\
+    \bf{Type}: & Performance(dynamic, manual, functional) \\
+    \bf{Pass}: & The game operates in at least 30 fps. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.3.3: & Game storage \\
+    \bf{Requirements} : & NFR11 \\
+    \bf{Description}: & Tests the game's storage size. \\
+    \bf{Type}: & Performance(static, manual, functional) \\
+    \bf{Pass}: & The game file size is at most 16GB. \\
+    \hline
+\end{tabular}
+
+\begin{tabular}{|l|p{10cm}|}
+    \hline
+    \bf{Test} 3.2.3.4: & Missing/incomplete file Exception handling\\
+    \bf{Requirements} : & \textcolor{red}{NFR25} \\
+    \bf{Description}: & Tests if the game handles errors relating to missing/incomplete files. \\
+    \bf{Type}: & Performance(dynamic, manual, functional) \\
+    \bf{Pass}: & The game terminates with an error message if a file is missing/incomplete. \\
+    \hline
+\end{tabular}
+		
+\subsection{Traceability Between Test Cases and Requirements}
+
+All the test cases in this document have a direct relation to the system requirement stated in the SRS document. Each test case is designed to prove at least one requirement. The traceability between the test cases and the requirements have been explicitly mentioned in the above test cases. 
+
+\section{Tests for Proof of Concept}
+
+\subsection{Display}
+The PoC tests covered the basic camera and user interface. The camera is fixated on the player and moves within the boundaries of the map to keep the player in focus. The player's health and gold is displayed and updated when taking damage and collecting treasure. (3.1.2)
+
+\subsection{Player}
+The PoC tests covered the movement, states, and actions of the player. The player can move in four directions and has idle, walking, falling, climbing, and crouching states. Each has their own specific movement restrictions. Idle has no movement. Walking has left and right. Falling has all 4 directions while in the air. Climbing has up and down only on ropes. And crouching is for holding down while idle. The player can jump, open chests, collect treasure, place bombs, throw ropes, pickup/throw chests, and use a whip. (3.1.3)
+
+\subsection{Bomb}
+The PoC tests covered creating, counting down, and exploding bombs. Bombs are created with a timer. The timer ticks down every second. Reaching 0 creates a explosion that damages everything nearby. (3.1.4)
+
+\subsection{Rope}
+The PoC tests covered creating, and extending ropes. Ropes can be thrown up and attach to a block or the background upon travelling the maximum distance. They can also be placed in front without throwing. (3.1.5)
+
+\subsection{Weapon}
+The PoC tests covered using the whip. It damages any enemies it touches while present, (3.1.6)
+
+\subsection{Snake}
+The PoC tests covered a player-snake interaction. This involved the player attack and snake attack. The player is able to defend themselves using a whip which can damage the health of a spider or stomp on a snake to completely kill it. Furthermore, if the player does not defend themselves then they can get health damage if the snake moves over them. (3.1.11)
+
+\subsection{Collect treasure}
+The PoC tests covered a the concept of a chest and collecting treasure coming from it. If the player comes in contact with treasure they can whose to open it. This results in a gold treasure that was in the box being placed where the treasure was originally. Next the player can choose whether or not they wish to collect the treasure. If they do then it increases their gold score. (3.1.7)
+
+\subsection{Arrow Trap}
+The PoC tests covered the arrow trap generation and the collision of the player with the shot arrow. It tested the arrow trap sensor to validate the behaviour of the trap follows the requirements. The PoC tests showed arrow trap was generated properly with a working sensor and ability to shoot arrows upon the player stepping into the attack area of the trap. (3.1.13)
+
+\subsection{Spike Trap}
+The PoC tests covered the spike trap generation and the ability to damage player upon a player stepping on a trap. The PoC showed that the system passes all the spike trap tests and it functions fully according to the functional requirements. (3.1.14)
+
+\subsection{Level}
+The PoC tests covered level generation. Levels were created from a map file. The location and types of all entities are specified and the layout of blocks in the level.(3.1.16)
+
+\subsection{Sign}
+The PoC tests covered displaying signs. Sign messages were shown at the bottom of the screen when the player was near one, (3.1.17)
+	
+\section{Comparison to Existing Implementation}	
+
+The existing functionalities only involve:
+\begin{enumerate}
+\item{Player movement: The player can jump and move right and left using keyboard inputs. Damage is taken for falling too far. 3.1.3}
+\item{Map entities: Entities such as treasure, signs, map solid blocks and block spaces are created as part of the game map as soon as the game is started. 3.1.9}
+\item{Chests: Chests can be interacted with and creates gold bars or rubies that are collected automatically. 3.1.9}
+\item{Display: The camera is focused on the player. Health and gold are displayed. 3.1.2}
+\item{Sign: Sign messages are displayed at the bottom of the screen when the player is near them. 3.1.17}
+\end{enumerate}
+				
+\section{Unit Testing Plan}
+
+Unit Testing will be executed manually by running the game and following the test cases provided in section 3. Unit testing will be performed bottom-up. The individual parts of modules will be tested first and then the parts that require other modules. Since the modules are complete, there is no need for stubs or drivers.
+Unit testing coverage metrics include achieving $90\%$ statement code coverage that will be done through the use of the code coverage tool Coverage.py. Not only that but also the team will manually ensure that the unit test cases will cover all the modules of the system and their methods. 
+Coverage...
+		
+\subsection{Unit testing of internal functions}
+
+Internal functions will be tested using the tests specified in section 3. For every module, its functions are exercised in at least one of functional tests. The goal of each test is to verify and validate that the internal system functions meet the functional requirements of the system. These tests will be from the developer perspective that are executed by the developer inputs and manually. Therefore, the developer will have the choice to create more tests as seen fit.
+		
+\subsection{Unit testing of output files}
+
+The score save file should have \st{2 columns separated by commas. The first column are names up to nameLength characters and the second is the corresponding scores} \textcolor{red}{one entry of the highest score the user has attempted in the life time of the game being used}.
+
+\bibliographystyle{plainnat}
+
+\bibliography{SRS}
+
+\newpage
+
+\section{Appendix}
+
+%This is where you can place additional information.
+
+\subsection{Symbolic Parameters}
+
+The definition of the test cases will call for SYMBOLIC\_CONSTANTS.
+Their values are defined in this section for easy maintenance.
+
+\begin{longtable}{|l|p{0.5\linewidth}|p{0.25\linewidth}|}
+\caption{Symbolic Parameter Table}\\
+\hline
+Symbolic Parameter & Description & Value\\
+\hline
+camWidth & The width of the camera, in pixels. & 320\\
+\hline
+camHeight & The height of the camera, in pixels. & 320\\
+
+\hline
+Symbolic Parameter & Description & Value\\
+\hline
+keyEsc & The key to quit the game. & esc key\\
+\hline
+keyLeft & The key to move left. & left arrow key\\
+\hline
+keyRight & The key to move right. & right arrow key\\
+\hline
+keyUp & The key to move/look up. & up arrow key\\
+\hline
+keyDown & The key to move/look down. & down arrow key\\
+\hline
+keyJump & The key to jump. & space key\\
+\hline
+keyInt & The key to interact. & tab key\\
+\hline
+keyBomb & The key to use a bomb. & b key\\
+\hline
+keyRope & The key to use a rope. & v key\\
+\hline
+% keyScoreboard & The key to display the scoreboard. & p key\\
+% \hline
+keyweap & The key to use the weapon. & left shift key\\
+\hline
+keyThrow & The key to throw object in empty space & left shift key\\
+\hline
+keyPick & The key to pick up object. & down arrow key and left shift key\\
+\hline
+keyCrouch & The key to crouch. & down arrow key\\
+\hline
+
+
+playerSpeed & The speed of the player in pixels per second. & 90\\
+\hline
+playerJumpHeight & The maximum height of the players jump in pixels. & 72\\
+\hline
+playerJumpSpeed & The speed the player reaches when jumping in pixels per second. & 3\\
+\hline
+playerClimbSpeed & The speed of the player in pixels per second when climbing. & 90\\
+\hline
+
+playerWidth & The width of the player, in pixels & 15\\
+\hline
+playerHeight & The height of the player, in pixels & 22\\
+\hline
+
+weaponDmg & The amount of damage dealt by the weapon. & 1\\
+\hline
+weaponDelay & The delay between weapon uses in seconds & 0.5\\
+\hline
+weaponAttack & The attack range of using the weapon in pixels & 16\\
+\hline
+
+fallDmg & The amount of damage the player takes when falling in blocks. & 1\\
+\hline
+fallDmgDist & The minimum fall distance in blocks the player must fall to take fall damage & 4\\
+\hline
+
+heartStartAmount & The number of hearts the player starts the level with. & 4\\
+\hline
+bombStartAmount & The number of bombs the player starts the level with. & 4\\
+\hline
+ropeStartAmount & The number of ropes the player starts the level with. & 4\\
+\hline
+bombTime & The number of seconds a bomb takes to explode. & 2\\
+\hline
+bombSize & The explosion size of a bomb in pixels. & 48.\\
+\hline
+throwSpeed & The speed of a thrown bomb in pixels per second. & 90\\
+\hline
+
+camWidth & The width of the camera, in pixels. & 320\\
+\hline
+camHeight & The height of the camera, in pixels. & 320\\
+
+bombHeight & The width of a bomb, in pixels. & 12\\
+\hline
+bombWidth & The height of a bomb, in pixels. & 12\\
+\hline
+fallSpeed & The speed a bomb falls, in pixels per second. & 72\\
+\hline
+bombDmg & The amount of damage a bomb deals. & 10\\
+\hline
+
+Ropelength & The length of a rope in blocks. & 4\\
+\hline
+
+stompDmg & The amount of damage the player deals to an enemy when jumping on them. & 1\\
+\hline
+
+snakeSpeed & The speed of a snake in pixels per second. & 45\\
+\hline
+snakeHearts & The number of hearts a snake has. & 1\\
+\hline
+snakeDmg & The amount of damage dealt by a snake. & 1\\
+\hline
+
+spiderSense & The number of blocks to the player for a spider to be active. & 4\\
+\hline
+spideJumpHeight & The height a spider jumps in pixels. & 72\\
+\hline
+spideJumpDist & The distance a spider jumps in pixels. & 72\\
+\hline
+spiderJumpTime & The amount of time a spider is spent jumping in frames. & 24\\
+\hline
+spiderJumpDelay & The delay between spider jumps in seconds. & 2\\
+\hline
+spiderHearts & The number of hearts a spider has. & 1\\
+\hline
+spiderDmg & The amount of damage dealt by a spider. & 1\\
+\hline
+
+arrowSense & The number of blocks an arrow trap can detect movement. & 4\\
+\hline
+arrowNum & The number of arrows shot by an arrow trap. & 1\\
+\hline
+arrowSpeed & The speed of an arrow in pixels per second. & 90\\
+\hline
+arrowDmg & he amount of damage dealt by an arrow. & 2\\
+\hline
+spikeDmg & The amount of damage dealt by landing on a spike. & 4\\
+\hline
+
+
+valDiamond & The gold value of a diamond. & 5000\\
+\hline
+valRuby & The gold value of a ruby & 1600\\
+\hline
+valSapphire & The gold value of a sapphire. & 1200\\
+\hline
+valEmerald & The gold value of an emerald. & 800\\
+\hline
+valGoldBar & The gold value of a gold bar. & 500\\
+\hline
+% nameLength & The number of characters of a name. & 6\\
+% \hline
+% scoreCalc & The score amount. & \textbar gold - 100 * time(in seconds)\textbar \\
+scoreCalc & The score amount. & the player's gold\\
+\hline
+\end{longtable}
+
+
+\subsection{Usability Survey Questions?}
+
+%This is a section that would be appropriate for some teams.
+\begin{enumerate}
+    \item Is it easy to switch in between controls with the given positions?
+    \item Do the controls have all the necessary player functions?
+    \item Do the system respond correctly to the user input controllers?
+    \item Is the color scheme of MacLunky provide clear display of the game?
+    \item Is the text size and font type of MacLunky easy to read and recognize?
+    \item Did the game shut down unexpectedly?
+    \item Did the game pause unexpectedly and then continued or just simply stayed frozen? 
+    \item Is the game's level of challenge close to the compared game out there?
+    \item Are the symbols and graphics easy to understand? If not what were they?
+    \item Is the game too long to play or too short?
+    \item Are there any issues with the player character?
+    \item Are there any issues with starting the game?
+\end{enumerate}
+
+\end{document}

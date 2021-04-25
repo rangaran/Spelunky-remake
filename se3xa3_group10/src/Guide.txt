@@ -1,0 +1,23 @@
+Setup:
+Download the zip file in UserGuide for the game and unzip files
+Run from MacLunky.exe that is inside the unzipped file
+OR
+With access to Python3 and Pygame
+On Windows, compile with Python3 main.py on the command line
+On WSL/Linux, run Xming(or any other x11 forwarding program) then compile with Python3 main.py on the command line
+
+Objective of the game:
+Escape the cave by reaching the exit door while collecting as much treasure as possible and avoiding enemies and traps!
+
+Controls:
+Left/Right arrow keys to move left/right
+Down arrow key to crouch
+Hold Up/Down arrow keys to move camera up/down or climb ropes
+Space key to jump
+Tab key to open chests/collect items
+Left shift key to use whip/throw held item
+Left shift while crouching to pick up/put down items
+B key to use bomb
+V key to throw rope up
+V key while crouching to put rope down
+ESC key to quit

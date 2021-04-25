@@ -1,0 +1,2749 @@
+\documentclass[12pt]{article}
+
+\usepackage{graphicx}
+\usepackage{paralist}
+\usepackage{amsfonts}
+\usepackage{amsmath}
+\usepackage{hhline}
+\usepackage{booktabs}
+\usepackage{multirow}
+\usepackage{multicol}
+\usepackage{tabularx}
+\usepackage{color}
+
+\oddsidemargin -10mm
+\evensidemargin -10mm
+\textwidth 160mm
+\textheight 200mm
+\renewcommand\baselinestretch{1.0}
+
+\pagestyle {plain}
+\pagenumbering{arabic}
+
+\newcounter{stepnum}
+
+\newcommand{\wss}[1]{\authornote{blue}{SS}{#1}}
+\newcommand{\Implies}{\Rightarrow}
+\newcommand{\s}{\mbox{ }}
+\newcommand{\m}[1]{\mbox{#1}}
+
+\title{SE 3XA3: Module Interface Specification}
+\author{Team 10, MacLunky
+		\\ Albert Zhou, zhouj103
+		\\Abeer Al-Yasiri, alyasira
+		\\ Niyatha Rangarajan, rangaran
+}
+
+\begin{document}
+
+\maketitle
+
+\begin{table}[hp]
+\caption{Revision History} \label{TblRevisionHistory}
+\begin{tabularx}{\textwidth}{llX}
+\toprule
+\textbf{Date} & \textbf{Developer(s)} & \textbf{Change}\\
+\midrule
+March 16, 2021 & Albert, Abeer, Niyatha & Version 0 made\\
+\midrule
+March 31, 2021 & Albert & Update to better match implementation\\
+\midrule
+April 12, 2021 & Albert, Niyatha & Srs updates based on consistency with other docs. Added state and input descriptions for all modules.\\
+\bottomrule
+\end{tabularx}
+\end{table}
+
+The following is a series of MISes for the modules that comprise the MacLunky game.
+
+%==================================================
+
+% \section*{Pending changes to implementation}
+% \begin{itemize}
+%     \item move entity constants to appropriate entity
+%     \item no text in entity
+%     \item enemy class
+%     \item trap class
+%     \item make arrow throwable
+%     \item entity.useable()
+%     \item entity.dimension()
+%     \item mover.gainGold()
+%     \item sign text
+%     \item readmap.rem() instead of getting entlist first
+%     \item readmap.entlist()
+% \end{itemize}
+
+\newpage
+
+% \section*{?? Module}
+
+% \subsection*{Template Module}
+
+% ??
+
+% \subsection*{Uses}
+
+% ?? from ??\\
+
+% \subsection*{Syntax}
+
+% \subsubsection*{Exported Types}
+
+% ??=??\\
+
+% \subsubsection*{Exported Access Programs}
+
+% \begin{tabular}{| l | l | l | l |}
+% \hline
+% \textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+% \hline
+% ?? & ?? & ?? & ??\\
+% \hline
+% \end{tabular}
+
+% \subsection*{Semantics}
+
+% \subsubsection*{State Variables}
+
+% $??$: ??\\
+
+% \subsubsection*{State Invariant}
+
+% $\forall (c : \mathbb{N} \mid c \in d : c > 0)$\\
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item Only known keys (as defined by KeyCode) will be put into the Key object as events to be processed.
+% \end{itemize}
+
+% \subsubsection*{Access Routine Semantics}
+
+% ??():
+% \begin{itemize}
+%     \item transition: $?? :=$
+%     \item output: $out := ??$
+%     \item exception: None
+% \end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent ??: $?? \times\{\mbox{??},\mbox{??}\}$\\
+% \noindent transition: ??\\
+% \noindent output: ??\\
+
+% \newpage
+
+\section*{Entity Module}
+
+\subsection*{Template Module}
+
+Entity
+
+\subsection*{Uses}
+
+None % note: uses gameinfo but map portion not entlist portion, map uses entity for entliet portion
+
+\subsection*{Syntax}
+
+%\subsubsection*{Exported Constants}
+
+% entSchema = $\{ \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle,\\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \langle "box", \{ \langle "hp", 0 \rangle, \langle "mat", "chest.png" \rangle, \langle "width", 12 \rangle, \langle "height", 12 \rangle, \langle "obj", Box \rangle \} \rangle, \\
+% \}$
+
+\subsubsection*{Exported Types}
+
+Entity = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Entity & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Entity & \textcolor{red}{~}\\
+\hline
+move & $\mathbb{Z}$, $\mathbb{Z}$ & ~ & \textcolor{red}{~}\\
+\hline
+set & $\mathbb{N}$, $\mathbb{N}$ & ~ & \textcolor{red}{~}\\
+\hline
+position & ~ & $[ \mathbb{N}$, $\mathbb{N} ]$ & ~\\
+\hline
+dimension & ~ & $[ \mathbb{N}$, $\mathbb{N} ]$ & ~\\
+\hline
+damage & $\mathbb{Z}$, ReadMap & ~ & ~\\
+\hline
+overlap & Entity & $\mathbb{B}$ & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+useable & ~ & $\mathbb{B}$ & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+flipImage & ~ & ~ & ~\\
+\hline
+makeEnt & string, $\mathbb{N}$, $\mathbb{N}$ & Entity & \textcolor{red}{~}\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$x$: $\mathbb{N}$ - x coordinate\\
+$y$: $\mathbb{N}$ - y coordinate\\
+$name$: string - name\\
+$height$: $\mathbb{N}$ - height\\
+$width$: $\mathbb{N}$ - width\\
+$hp$: $\mathbb{Z}$ - hit points\\
+$mat$: image - display image
+
+\subsubsection*{State Invariant}
+
+$x \geq 0 \land y \geq 0 \land height \geq 0 \land width \geq 0$
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Entity can only be instantiated by one of its subclasses.
+    \item Images are surfaces for display.
+    \item Images are a implementation decision.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Entity($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $x, y, name, height, width, hp, mat := x, y, name, height, width, hp, mat$
+    % \item output: $out := \mathit{self}$
+    
+    \item \textcolor{red}{output: Create an $Entity$ object with the parameters $x, y, name, height, width, hp, mat$}
+    \item exception: \textcolor{red}{None}
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Entity object is called, $height$ represents height dimension of Entity, $width$ represented width dimension of Entity, $hp$ represents the health points of Entity, $mat$ represents the loaded image of Entity. 
+\end{itemize}
+
+\noindent move($a, b$):
+\begin{itemize}
+    % \item transition: $x, y := x + a, y + b
+    \item \textcolor{red}{transition: Change $x, y$ by $a, b$}
+    \item exception: \textcolor{red}{None}
+    \item input definition: $a$ represents the distance an Entity object moves in the x-direction, $b$ represents the distance an Entity object moved in the y-direction.
+\end{itemize}
+
+\noindent set($a, b$):
+\begin{itemize}
+    % \item transition: $x, y := a, b$
+    \item \textcolor{red}{transition: Set $x, y$ to $a, b$}
+    \item exception: \textcolor{red}{None}
+    \item input definition: $a$ represents the new Entity object x-position, $b$ represents the new Entity object y-position.
+\end{itemize}
+
+\noindent position():
+\begin{itemize}
+    % \item output: $out := x, y$
+        \item \textcolor{red}{output: $x, y$ represents a tuple of the Entity object position.}
+    \item exception: None
+\end{itemize}
+
+\noindent dimension():
+\begin{itemize}
+    % \item output: $out := height, width$
+    \item \textcolor{red}{output: $height, width$ represents a tuple of the Entity object size.}
+    \item exception: None
+\end{itemize}
+
+\noindent damage($d, gameinfo$):
+\begin{itemize}
+    % \item transition: $hp := hp - d$
+    \item transition: Reduce $hp$ by $d$
+    \item exception: None
+    \item input definition: $d$ represents the damage value on the Entity, $gameinfo$ represents the state of the game Map. 
+\end{itemize}
+
+\noindent overlap($ent$): % Note: only for entity not player
+\begin{itemize}
+    % \item output: $out := \m{topLeft}(self)[0] \geq \m{botRight}(ent)[0] \lor \m{topLeft}(ent)[0] \geq \m{botRight}(self)[0] \lor \m{topLeft}(self)[1] \geq \m{botRight}(ent)[1] \lor \m{topLeft}(ent)[1] \geq \m{botRight}(self)[1] \Implies False \mid True \Implies True$
+    \item \textcolor{red}{output: Whether or not $ent$, Entity object, overlaps with $self$ object. }
+    \item exception: None
+    \item input definition: $ent$ represents an Entity object that is near the $self$ object.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    \item transition: None
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the user of the game controlling. 
+\end{itemize}
+
+\noindent useable():
+\begin{itemize}
+    % \item output: $out := False$
+    \item \textcolor{red}{output: $False$}
+    \item exception: None
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    \item transition: None
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the user of the game controlling. 
+\end{itemize}
+
+\noindent flipImage():
+\begin{itemize}
+    % \item transition: $mat := mat \text{ flipped horizontally}$
+    \item \textcolor{red}{transition: Flip $mat$ horizontally}
+    \item exception: None
+\end{itemize}
+
+\noindent makeEnt($n, x, y$):
+\begin{itemize}
+    % \item output: $out :=$ A $n$ type Entity with $x = a$, $y = b$, and other appropriate data.
+    \item \textcolor{red}{output: Create a $n$-named object with parameters$x, y$}
+    \item exception: \textcolor{red}{None}
+    \item input definition: $n$ represents the name of the output Entity object, $x$ represents the x-position of the Entity object, $y$ represents the y-position of the Entity object. 
+\end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent topLeft: $\m{Entity} \rightarrow \mathbb{N} \times \mathbb{N}$\\
+% $\m{topLeft}(ent) = ent.\m{position}()[0], ent.\m{position}()[1]$\\
+
+% \noindent botRight: $\m{Entity} \rightarrow \mathbb{N} \times \mathbb{N}$\\
+% $\m{botRight}(ent) = ent.\m{position}()[0] + ent.\m{dimension}[0], ent.\m{position}()[1] + ent.\m{dimension}[1]$\\
+
+\newpage
+
+\section*{Collectable Module}
+
+\subsection*{Template Module inherits Entity}
+
+Collectable
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Collectable = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Collectable & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Collectable & ~\\
+\hline
+useable & ~ & $\mathbb{B}$ & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$val$: $\mathbb{Z}$ - the amount of a resource contained in the object
+
+\begin{itemize}
+    \item Collectable can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Collectable($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Entity}(x, y, name, height, width, hp, mat), \text{value corresponding to name}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Collectable$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to 0.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Collectable object is called, $height$ represents height dimension of Collectable, $width$ represented width dimension of Collectable, $hp$ represents the health points of Collectable, $mat$ represents the loaded image of Collectable.
+\end{itemize}
+
+\noindent useable():
+\begin{itemize}
+    % \item output: $out := True$
+    \item \textcolor{red}{output: $True$}
+    \item exception: None
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    \item transition: remove from $gameinfo$
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the user of the game controlling.
+\end{itemize}
+
+\newpage
+
+\section*{Treasure Module}
+
+\subsection*{Template Module inherits Collectable}
+
+Treasure
+
+\subsection*{Uses}
+
+Collectable
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Treasure = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Treasure & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Treasure & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\begin{itemize}
+    \item Treasure can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Treasure($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self} := \m{new Collectable}(x, y, name, height, width, hp, mat)$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Treasure$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to 0.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Treasure object is called, $height$ represents height dimension of Treasure, $width$ represented width dimension of Treasure, $hp$ represents the health points of Treasure, $mat$ represents the loaded image of Treasure.
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $Collectable.\m{use}(gameinfo, player) \hphantom{1} player.gold := player.gold + val)
+    \item \textcolor{red}{transition: Use inherited use(). Add $val$ to $player$ gold}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{Gold Module}
+
+\subsection*{Template Module inherits Treasure}
+
+Gold
+
+\subsection*{Uses}
+
+Treasure
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALGOLD = $500$ - the amount of money a bar of gold is worth
+
+\subsubsection*{Exported Types}
+
+Gold = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Gold & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Gold & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Gold($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Treasure}(x, y, name, height, width, hp, mat), \text{VALGOLD}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Gold$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALGOLD.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Gold object is called, $height$ represents height dimension of Gold, $width$ represented width dimension of Gold, $hp$ represents the health points of Gold, $mat$ represents the loaded image of Gold.
+\end{itemize}
+
+\newpage
+
+\section*{Emerald Module}
+
+\subsection*{Template Module inherits Treasure}
+
+Emerald
+
+\subsection*{Uses}
+
+Treasure
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALEMERALD = $800$ - the amount of money an emerald is worth
+
+\subsubsection*{Exported Types}
+
+Emerald = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Emerald & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Emerald & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Emerald($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Treasure}(x, y, name, height, width, hp, mat), \text{VALEMERALD}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create an $Emerald$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALEMERALD.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Emerald object is called, $height$ represents height dimension of Emerald, $width$ represented width dimension of Emerald, $hp$ represents the health points of Emerald, $mat$ represents the loaded image of Emerald.
+\end{itemize}
+
+\newpage
+
+\section*{Sapphire Module}
+
+\subsection*{Template Module inherits Treasure}
+
+Sapphire
+
+\subsection*{Uses}
+
+Treasure
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALSAPPHIRE = $500$ - the amount of money a sapphire is worth
+
+\subsubsection*{Exported Types}
+
+Sapphire = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Sapphire & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Sapphire & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Sapphire($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Treasure}(x, y, name, height, width, hp, mat), \text{VALSAPPHIRE}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Sapphire$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALSAPPHIRE.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Sapphire object is called, $height$ represents height dimension of Sapphire, $width$ represented width dimension of Sapphire, $hp$ represents the health points of Sapphire, $mat$ represents the loaded image of Sapphire.
+\end{itemize}
+
+\newpage
+
+\section*{Ruby Module}
+
+\subsection*{Template Module inherits Treasure}
+
+Ruby
+
+\subsection*{Uses}
+
+Treasure
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALRUBY = $1600$ - the amount of money a ruby is worth
+
+\subsubsection*{Exported Types}
+
+Ruby = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Ruby & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Ruby & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Ruby($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Treasure}(x, y, name, height, width, hp, mat), \text{VALRUBY}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{ output: Create a $Ruby$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALRUBY.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Ruby object is called, $height$ represents height dimension of Ruby, $width$ represented width dimension of Ruby, $hp$ represents the health points of Ruby, $mat$ represents the loaded image of Ruby.
+\end{itemize}
+
+\newpage
+
+\section*{Diamond Module}
+
+\subsection*{Template Module inherits Treasure}
+
+Diamond
+
+\subsection*{Uses}
+
+Treasure
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALDIAMOND = $5000$ - the amount of money a diamond is worth
+
+\subsubsection*{Exported Types}
+
+Diamond = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Diamond & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Diamond & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Diamond($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Treasure}(x, y, name, height, width, hp, mat), \text{VALDIAMOND}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Diamond$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALDIAMOND.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Diamond object is called, $height$ represents height dimension of Diamond, $width$ represented width dimension of Diamond, $hp$ represents the health points of Diamond, $mat$ represents the loaded image of Diamond.
+\end{itemize}
+
+\newpage
+
+\section*{BombPile Module}
+
+\subsection*{Template Module inherits Collectable}
+
+BombPile
+
+\subsection*{Uses}
+
+Collectable
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALBOMBPILE = $3$ - the number of bombs in the object
+
+\subsubsection*{Exported Types}
+
+BombPile = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new BombPile & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & BombPile & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new BombPile($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Collectable}(x, y, name, height, width, hp, mat), \text{VALBOMBPILE}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $BombPile$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALBOMBPILE.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the BombPile object is called, $height$ represents height dimension of BombPile, $width$ represented width dimension of BombPile, $hp$ represents the health points of BombPile, $mat$ represents the loaded image of BombPile.
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $Collectable.\m{use}(gameinfo, player) \hphantom{1} player.bombs := player.bombs + val)$
+    \item \textcolor{red}{transition: Use inherited use(). Add $val$ to $player$ bombs}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{RopePile Module}
+
+\subsection*{Template Module inherits Collectable}
+
+RopePile
+
+\subsection*{Uses}
+
+Collectable
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+VALROPEPILE = $3$ - the number of ropes in the object
+
+\subsubsection*{Exported Types}
+
+RopePile = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new RopePile & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & RopePile & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new RopePile($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, val := \m{new Collectable}(x, y, name, height, width, hp, mat), \text{VALROPEPILE}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $RopePile$ object with the parameters $x, y, name, height, width, hp, mat$. Set $val$ to VALROPEPILE.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the RopePile object is called, $height$ represents height dimension of RopePile, $width$ represented width dimension of RopePile, $hp$ represents the health points of RopePile, $mat$ represents the loaded image of RopePile.
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $Collectable.\m{use}(gameinfo, player) \hphantom{1} player.ropes := player.ropes + val)$
+    \item\textcolor{red}{ transition: Use inherited use(). Add $val$ to $player$ ropes}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{Sign Module}
+
+\subsection*{Template Module inherits Entity}
+
+Sign
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Sign = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Sign & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Sign & ~\\
+\hline
+setText & string & ~ & ~\\
+\hline
+getText & ~ & string & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$text$: string - the message on the Sign
+
+\subsubsection*{Access Routine Semantics}
+
+new Sign($x, y, name, height, width, hp, mat, text$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, text := \m{new Entity}(x, y, name, height, width, hp, mat), ""$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Sign$ object with the parameters $x, y, name, height, width, hp, mat$. Set $text$ to empty string.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Sign object is called, $height$ represents height dimension of Sign, $width$ represented width dimension of Sign, $hp$ represents the health points of Sign, $mat$ represents the loaded image of Sign.
+\end{itemize}
+
+\noindent setText($t$):
+\begin{itemize}
+    % \item output: $text := t$
+    \item transition: Set $text$ to $t$
+    \item exception: None
+    \item input definitions: $t$ represent the text message to be displayed in the Sign object. 
+\end{itemize}
+
+\noindent getText():
+\begin{itemize}
+    % \item output: $out := text$
+    \item \textcolor{red}{output: $text$ represents the massage on the Sign object}
+    \item exception: None
+\end{itemize}
+
+\newpage
+
+\section*{Explosion Module}
+
+\subsection*{Template Module inherits Entity}
+
+Explosion
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+EXPLOSIONTIME = $45$\\ - the duration of the explosion
+EXPLOSIONDAMAGE = $10$ - the amount of damage dealt
+
+\subsubsection*{Exported Types}
+
+Explosion = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Explosion & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Explosion & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+explode & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$time$: $\mathbb{N}$ - the time remaining until the explosion is over
+
+\subsubsection*{State Invariant}
+
+$0 \leq time \leq \text{EXPLOSIONTIME}$
+
+\subsubsection*{Access Routine Semantics}
+
+new Explosion($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, time := \m{new Entity}(x, y, name, height, width, hp, mat), \text{EXPLOSIONTIME}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create an $Explosion$ object with the parameters $x, y, name, height, width, hp, mat$. Set $time$ to EXPLOSIONTIME.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Explosion object is called, $height$ represents height dimension of Explosion, $width$ represented width dimension of Explosion, $hp$ represents the health points of Explosion, $mat$ represents the loaded image of Explosion.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $time := time - 1, time = 0 \Implies gameinfo.\m{rem}(self)$
+    \item \textcolor{red}{transition: Decrement $time$. If $time = 0$, remove from $gameinfo$}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent explode($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $\m{destroyBlock}(gameinfo), \m{destroyEnt}(gameinfo), \m{destroyPlayer}(player)$
+    \item \textcolor{red}{transition: Destroy nearby blocks. Deal EXPLOSIONDAMAGE damage to all nearby $Entity$ objects and $Mover$ object}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent destroyPlayer: $\m{Mover}$\\
+% $\m{destroyPlayer}(player) \equiv$\\
+% transition: $\m{overlap}(player) \Implies player.\m{damage}(\text{EXPLOSIONDAMAGE})$\\
+
+% \noindent destroyEnt: $\m{ReadMap}$\\
+% $\m{destroyEnt}(gameinfo) \equiv$\\
+% transition: $i : \m{Entity} \mid i \in gameinfo.\m{entList}() : \m{overlap}(i) \Implies i.\m{damage}(\text{EXPLOSIONDAMAGE})$\\
+
+% \noindent destroyBlock: $\m{ReadMap}$\\
+% $\m{destroyBlock}(gameinfo) \equiv$\\
+% transition: $\{ i, j \} : \{ \mathbb{N}, \mathbb{N} \} \mid \{ i, j \} \in \m{findDestroyBlock}() : gameinfo.\m{destroyBlock}(i, j)$\\ % note: correct?
+
+% \noindent findDestroyBlock: $ \m{seq of }\{ \mathbb{N}, \mathbb{N} \}$\\
+% $\m{findDestroyBlock}() \equiv$\\
+% output: $out = [\{ i, j \} : \{ \mathbb{N}, \mathbb{N} \} \mid \{ 0, 0 \} \leq \{ i, j \} \leq \{ \infty, \infty \} \text{ such that } \{i, j \} \\ \text{ are coordinates of a block affected by the explosion}]$ 
+% %$out = [i : \mathbb{N} \mid x / 32 \leq i \leq (x + width) / 32 : [j : \mathbb{N} \mid y / 32 \leq j \leq (y + height) / 32 : \{ i, j \}]]$\\
+
+\newpage
+
+\section*{Rope Module}
+
+\subsection*{Template Module}
+
+Rope
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+LENGTH = $4$ - the maximum travel distance
+
+\subsubsection*{Exported Types}
+
+Rope = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Rope & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Rope & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+throw & ~ & ~ & ~\\
+\hline
+makeRope & readMap & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$ys$: $\mathbb{Z}$ - movement speed in the y direction\\
+$dist$: $\mathbb{N}$ - maximum distance the rope can travel
+
+\subsubsection*{State Invariant}
+
+$ys \leq 0 \land 0 \leq dist \leq 32 * \text{LENGTH}$
+
+\subsubsection*{Access Routine Semantics}
+
+new Rope($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, ys, dist := \m{new Entity}(x, y, name, height, width, hp, mat), 0, 32 * \text{LENGTH}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Rope$ object with the parameters $x, y, name, height, width, hp, mat$. Set $ys, dist$ to 0, 0.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Rope object is called, $height$ represents height dimension of Rope, $width$ represented width dimension of Rope, $hp$ represents the health points of Rope, $mat$ represents the loaded image of Rope.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $ ys \neq 0 \Implies \m{move}(gameinfo, ys)$
+    \item \textcolor{red}{: If $ys \neq 0$, move the object}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent throw():
+\begin{itemize}
+    % \item transition: $ ys := -2$
+    \item \textcolor{red}{transition: Set $ys$ to -2}
+    \item exception: None
+\end{itemize}
+
+\noindent makeRope($gameinfo$):
+\begin{itemize}
+    % \item transition: Change $mat$ and $height$ to the appropriate rope of length findDist($gameinfo$). Set $x$ and $y$ to the top middle of a block.
+    \item \textcolor{red}{transition: Change $mat$ and $height$ based on the rope length. The length is the minimum of the number of blocks until it reaches a solid block or LENGTH. Set $x, y$ to the top middle of a block.}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent move: $\m{ReadMap} \times \mathbb{Z}$\\
+$\m{move}(gameinfo, ys) \equiv$\\
+% transition: Move along the y axis. $y, dist := y + b, dist + b$. If the entity collides with a block, $ys := 0$ and $\m{makeRope}(gameinfo)$.\\
+\textcolor{red}{transition: Move along the y axis. If the object collides with a solid block or travels the maximum distance, set $ys$ to 0 and make the rope.}\\
+input definition: $gameinfo$ represents the state of the game Map, $ys$ represents the distance the rope will travel on the y-direction.\\
+%$\lnot(gameinfo.\m{solid}((x + 1) / 32), (y + b + 1) / 32)) \land \lnot(gameinfo.\m{solid}((x + width - 1) / 32), (y + b) / 32)) \land dist > 0 \Implies $\\
+
+% \noindent findDist: $\m{ReadMap} \times \mathbb{N}$\\
+% $\m{findDist}(gameinfo) \equiv$\\
+% output: $out = $ The number of blocks the rope can extend down to (at least 1 and at most LENGTH)
+
+\newpage
+
+\section*{Throwable Module}
+
+\subsection*{Template Module}
+
+Throwable
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+GRAVITY = $3$ - the speed of an object falling due to gravity\\
+TOOFASTFORGRAVITY = $1$ the speed of an object moving to be unaffected by gravity\\
+
+\subsubsection*{Exported Types}
+
+Throwable = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Throwable & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Throwable & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+pickUp & ~ & ~ & ~\\
+\hline
+putDown & ~ & ~ & ~\\
+\hline
+throw & $\mathbb{Z}$, $\mathbb{Z}$ & ~ & ~\\
+\hline
+carry & $\mathbb{Z}$, $\mathbb{Z}$ & ~ & ~\\
+\hline
+rem & ReadMap, Mover & ~ & ~\\
+\hline
+flip & ~ & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$xs$: $\mathbb{Z}$ - movement speed in the x direction\\
+$ys$: $\mathbb{Z}$ - movement speed in the y direction\\
+$held$: $\mathbb{B}$ - whether the object is held by the player\\
+$thrown$: $\mathbb{B}$ - whether the object has been thrown\\
+$direction$: $\mathbb{Z}$ - the direction the object is facing
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Throwable can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Throwable($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, xs, ys, held, thrown, direction := \m{new Entity}(x, y, name, height, width, hp, mat), 0, 0,\\ False, False, 1$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Throwable$ object with the parameters $x, y, name, height, width, hp, mat$. Set $xs, ys, held, thrown, direction$ to 0, 0, False, False, 1.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Throwable object is called, $height$ represents height dimension of Throwable, $width$ represented width dimension of Throwable, $hp$ represents the health points of Throwable, $mat$ represents the loaded image of Throwable.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $ \lnot held \Implies \m{gravity}(gameinfo)$
+    \item \textcolor{red}{transition: If the object is not held, it is affected by gravity}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent pickUp():
+\begin{itemize}
+    % \item transition: $ held := True$
+    \item \textcolor{red}{transition: Set $held$ to True}
+    \item exception: None
+\end{itemize}
+
+\noindent putDown():
+\begin{itemize}
+    % \item transition: $ held := False$
+    \item \textcolor{red}{ transition: Set $held$ to False}
+    \item exception: None
+\end{itemize}
+
+\noindent throw($x, y$):
+\begin{itemize}
+    % \item transition: $ xs, ys, held, thrown := as, bs, False, True$
+    \item \textcolor{red}{transition: Set $xs, ys, held, thrown$ to $x, y$, False, True}
+    \item exception: None
+    \item input definition: $x$ represents the new x-position of object after being thrown, $y$ represent the new y-position of the object after being thrown. 
+\end{itemize}
+
+\noindent carry($a, b$):
+\begin{itemize}
+    % \item transition: $ x, y := x + a, y + b$
+    \item \textcolor{red}{transition: Change $x, y$ by $a, b$}
+    \item exception: None
+    \item input definition: $a$ represents the x-distance moved of object when being carried, $b$ represent the y-distance of the object when being carrried. 
+\end{itemize}
+
+\noindent rem($gameinfo, player$):
+\begin{itemize}
+    % \item transition: Remove from $gameinfo$, $\m{putDown}()$, and $player.\m{hand} == self \Implies $ replace hand with $EmptyHand$
+    \item \textcolor{red}{transition: Remove from $gameinfo$. Put it down. Remove it from $player$ }
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent flip():
+\begin{itemize}
+    % \item transition: $Entity.\m{flipImage}(). direction := -direction$
+    \item \textcolor{red}{transition: Flip $mat$ horizontally. Set $direction$ to $-direction$}
+    \item exception: None
+\end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent gravity: $\m{ReadMap}$\\
+$\m{gravity}(gameinfo) \equiv$\\
+% transition: move($gameinfo, xs, |xs| > \text{TOOFASTFORGRAVITY} \Implies 0 \mid True \Implies ys + \text{GRAVITY}$).\\
+\textcolor{red}{transition: If the magnitude of $xs \geq$ TOOFASTFORGRAVITY, set $ys$ 0. Else, set $ys$ to GRAVITY\\
+input definition: $gameinfo$ represents the state of the game Map.}
+
+\noindent move: $\m{ReadMap} \times \mathbb{Z} \times \mathbb{Z}$\\
+$\m{move}(gameinfo, xs, ys) \equiv$\\
+% transition: Move along the x and y axis. $x, y := x + as, y + ys$. Set the appropriate $xs$ or $ys$ to $0$ if the object collides with a block.
+\textcolor{red}{transition: Move along the x and y axis. Set the appropriate $xs$ or $ys$ to $0$ if the object collides with a solid block.
+input definition: $gameinfo$ represents the state of the game Map, $xs$ represents distance of movement in the x-position, $ys$ represents distance of movement in the y-position.}
+
+\newpage
+
+\section*{Chest Module}
+
+\subsection*{Template Module}
+
+Chest
+
+\subsection*{Uses}
+
+Throwable
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Chest = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Chest & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Chest & ~\\
+\hline
+useable & ~ & $\mathbb{B}$ & ~\\
+\hline
+use & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Chest($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self} := \m{new Throwable}(x, y, name, height, width, hp, mat)$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Chest$ object with the parameters $x, y, name, height, width, hp, mat$.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Chest object is called, $height$ represents height dimension of Chest, $width$ represented width dimension of Chest, $hp$ represents the health points of Chest, $mat$ represents the loaded image of Chest.
+\end{itemize}
+
+\noindent useable():
+\begin{itemize}
+    % \item output: $out := True$
+    \item $True$
+    \item exception: None
+\end{itemize}
+
+\noindent use($gameinfo, player$):
+\begin{itemize}
+    % \item transition: Randomly create Gold or Gem $ent$ with the same coordinates, add with $gameinfo.\m{add}(ent)$, and $gameinfo.\m{rem}(self)$.
+    \item \textcolor{red}{transition: Use inherited rem(). Create a random $Collectable$ subsclass object with the same $x, y$. Add it to $gameinfo$ }
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{Bomb Module}
+
+\subsection*{Template Module}
+
+Bomb
+
+\subsection*{Uses}
+
+Throwable, Explosion
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+BOMBTIME = $180$ - the amount of time until the bomb explodes
+
+\subsubsection*{Exported Types}
+
+Bomb = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Bomb & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Bomb & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+explode & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+time: $\mathbb{N}$ - the amount of time remaining until the bomb explodes
+
+\subsubsection*{State Invariant}
+
+$0 \leq time \leq \text{BOMTIME}$
+
+\subsubsection*{Access Routine Semantics}
+
+new Bomb($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, time := \m{new Throwable}(x, y, name, height, width, hp, mat), \text{BOMBTIME}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Bomb$ object with the parameters $x, y, name, height, width, hp, mat$. Set $time$ to BOMBTIME.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Bomb object is called, $height$ represents height dimension of Bomb, $width$ represented width dimension of Bomb, $hp$ represents the health points of Bomb, $mat$ represents the loaded image of Bomb.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $time := time - 1$. Throwable.tick($gameinfo, player$). $time = 0 \lor (thrown \land xs = 0) \lor hp \leq 0 \Implies \m{explode}(gameinfo, player)$.
+    \item \textcolor{red}{transition: Decrement $time$. Use inherited tick(). If $time = 0$, the object is thrown into a solid block, or if it is destroyed, the object explodes}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent explode($gameinfo, player$):
+\begin{itemize}
+    % \item transition: Create Explosion $ent$ with the same centre, add with $gameinfo.\m{add}(ent)$, $\m{rem}(gameinfo, player)$, and $ent.\m{explode}(gameinfo, player)$.
+    \item \textcolor{red}{transition: Remove from $gameinfo$. Create an $Explosion$ object with the same $x, y$. Add it to $gameinfo$. Explode it}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{EmptyHand Module}
+
+\subsection*{Template Module inherits Throwable}
+
+EmptyHand
+
+\subsection*{Uses}
+
+Throwable
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+EmptyHand = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new EmptyHand & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & EmptyHand & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new EmptyHand($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self} := \m{new Entity}(x, y, name, height, width, hp, mat)$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $EmptyHand$ object with the parameters $x, y, name, height, width, hp, mat$.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the EmptyHand object is called, $height$ represents height dimension of EmptyHand, $width$ represented width dimension of EmptyHand, $hp$ represents the health points of EmptyHand, $mat$ represents the loaded image of EmptyHand.
+\end{itemize}
+
+\newpage
+
+\section*{Enemy Module}
+
+% \subsection*{Interface Module inherits Entity}
+\subsection*{Template Module inherits Entity}
+
+% Enemy(Entity)
+Enemy
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+\textcolor{red}{GRAVITY = 3 - the speed of an object falling due to gravity}\\
+
+% SnakeDamage = 10\\
+% SpiderDamage = 1\\
+
+\subsubsection*{Exported Types}
+
+None
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Enemy & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Enemy & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+\textcolor{red}{damage} & \textcolor{red}{$\mathbb{N}$, ReadMap} & textcolor{red}{~} & textcolor{red}{~}\\
+\hline
+% damage & Mover & ~ & ~\\
+% \hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$attack$: $\mathbb{N}$ - the amount of damage dealt \\
+$xs$: $\mathbb{Z}$ - movement speed in the x direction\\
+$ys$: $\mathbb{Z}$ - movement speed in the y direction
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Enemy can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Enemy($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, attack, xs, ys := \m{new Entity}(x, y, name, height, width, hp, mat), 0, 0, 0$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create an $Enemy$ object with the parameters $x, y, name, height, width, hp, mat$. Set $attack, xs, ys$ to 0, 0, 0.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Enemy object is called, $height$ represents height dimension of Enemy, $width$ represented width dimension of Enemy, $hp$ represents the health points of Enemy, $mat$ represents the loaded image of Enemy.
+\end{itemize}
+
+\noindent tick(gameinfo, player):
+\begin{itemize}
+    % \item transition: $\m{gravity}(), \m{move}(gameinfo, player). \hphantom{1} \m{overlap}(player) \Implies player.\m{damage}(damage)$
+    \item \textcolor{red}{transition: The object is affected by gravity. It moves. If it overlaps with $player$, deal $attack$ damage to it}
+    \item exception: None
+    \item input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent damage($d, gameinfo$):
+\begin{itemize}
+    % \item transition: $Entity.\m{damage}(d, gameinfo) \hphantom{1} hp \leq 0 \Implies $ remove from $gameinfo$
+    \item \textcolor{red}{transition: Use inherited damage(). If $hp \leq 0$, remove from $gameinfo$}
+    \item exception: None
+    \item input definition: $d$ represents the damage value on the affecting the Enemy object, $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent move: $\m{ReadMap} \times \m{Mover}$\\
+$\m{move}(gameinfo) \equiv$\\
+transition: None.\\
+input definition: $gameinfo$ represents the state of the game Map.\\
+
+\noindent gravity:\\
+$\m{gravity}() \equiv$\\
+transition: Set $ys$ to GRAVITY\\
+
+\newpage
+
+\section*{Snake Module}
+
+\subsection*{Template Module inherits Enemy}
+
+Snake
+
+\subsection*{Uses}
+
+Enemy
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+SNAKEDAMAGE = 1 - the amount of damage a snake deals
+
+\subsubsection*{Exported Types}
+
+Snake = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l | }
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Snake & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Snake & ~\\
+\hline
+% move & Readmap, $\mathbb{N}$, $\mathbb{N}$ &  & \\
+% \hline
+% makeSnake & Readmap &  & \\
+% \hline
+% tick & Readmap, Mover & ~ & ~\\
+% \hline
+% damage $\mathbb{N}$, Readmap &  & \\
+% \hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+% \subsubsection*{State Variables}
+
+% $self.moving = snakeSpeed$\\
+% $self.dist = block size$\\
+% $xs: \mathbb{Z}$
+% $ys: \mathbb{Z}$
+% $width: \mathbb{N}$
+
+% \subsubsection*{State Invariant}
+% $xs \geq 0 \land ys \geq 0 \land height \geq 0 \land width \geq 0$
+
+\subsubsection*{Access Routine Semantics}
+
+% new Snake(xs, ys, hp, mat, name, text, width, height)
+% \begin{itemize}
+%     \item transition: $self := new Snake(xs, ys, hp, mat, name, text, width, height) $
+%     \item exception: None
+% \end{itemize}
+
+new Snake($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, attack, xs,:= \m{new Enemy}(x, y, name, height, width, hp, mat), \text{SNAKEDAMAGE}, 0.5$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Snake$ object with the parameters $x, y, name, height, width, hp, mat$. Set $xs, attack$ to 0.5, SNAKEDAMAGE.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Snake object is called, $height$ represents height dimension of Snake, $width$ represented width dimension of Snake, $hp$ represents the health points of Snake, $mat$ represents the loaded image of Snake.
+\end{itemize}
+
+% \noindent move(self, gameinfo, x,y):
+% \begin{itemize}
+%     \item transition: Switches the direction of the snake motion if the snake encounters a solid block while in motion. That is move along the x and y axis and adjust x as x + xs: \\
+%     $x>0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) || x<0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) $
+%     \item exception: None
+% \end{itemize}
+% \newpage
+
+% \noindent makeSnake(gameinfo):
+% \begin{itemize}
+%     \item transition: change mat and height to the appropriate snake of length 
+%     \item exception: None
+% \end{itemize}
+
+% \noindent
+% damage( d=0, gameinfo):
+% \begin{itemize}
+%     \item transition:  $player.hp > 0 => player.hp :=  player.hp - d$ $||$\\$player.hp <= 0 => player.delete$
+%     \item exception: None
+% \end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent\textcolor{red}{ move: $\m{ReadMap}$\\
+$\m{move}(gameinfo) \equiv$\\
+% transition: Move along the x axis. $x := x + xs$. If the object collides with a block or would fall off the edge of a block, $xs := -xs$. Move down the y axis. $y := y + ys$. If the object collides with a block, $ys := 0$. \\
+transition: Move along the x axis. If the object collides with a solid block or would fall off the edge of a solid block, turn it around. Move down the y axis. If the object collides with a solid block, set $ys$ to 0.\\
+input definition: $gameinfo$ represents the state of the game Map.\\}
+
+% \noindent move(self, gameinfo, x,y):
+% \begin{itemize}
+%     \item transition: Switches the direction of the snake motion if the snake encounters a solid block while in motion. That is move along the x and y axis and adjust x as x + xs: \\
+%     $x>0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) || x<0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) $
+%     \item exception: None
+% \end{itemize}
+
+\newpage
+
+\section*{Spider Module}
+
+\subsection*{Template Module inherits Enemy}
+
+Spider
+
+\subsection*{Uses}
+
+Enemy
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+SPIDEREDAMAGE = 1 - the amount of damage a spider deals\\
+SPIDESENSE = 1 - the range a spider can detect the player
+
+\subsubsection*{Exported Types}
+
+Spider = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l | }
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Spider & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Snake & ~\\
+\hline
+% move & Readmap, $\mathbb{N}$, $\mathbb{N}$ &  & \\
+% \hline
+% makeSnake & Readmap &  & \\
+% \hline
+% tick & Readmap, Mover & ~ & ~\\
+% \hline
+% damage $\mathbb{N}$, Readmap &  & \\
+% \hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+% \subsubsection*{State Variables}
+
+% $self.moving = snakeSpeed$\\
+% $self.dist = block size$\\
+% $xs: \mathbb{Z}$
+% $ys: \mathbb{Z}$
+% $width: \mathbb{N}$
+
+% \subsubsection*{State Invariant}
+% $xs \geq 0 \land ys \geq 0 \land height \geq 0 \land width \geq 0$
+
+\subsubsection*{Access Routine Semantics}
+
+% new Snake(xs, ys, hp, mat, name, text, width, height)
+% \begin{itemize}
+%     \item transition: $self := new Snake(xs, ys, hp, mat, name, text, width, height) $
+%     \item exception: None
+% \end{itemize}
+
+new Spider($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, attack := \m{new Enemy}(x, y, name, height, width, hp, mat), \text{SPIDERDAMAGE}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Spider$ object with the parameters $x, y, name, height, width, hp, mat$. Set $attack$ to SPIDERDAMAGE.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Spider object is called, $height$ represents height dimension of Spider, $width$ represented width dimension of Spider, $hp$ represents the health points of Spider, $mat$ represents the loaded image of Spider.
+\end{itemize}
+
+% \noindent move(self, gameinfo, x,y):
+% \begin{itemize}
+%     \item transition: Switches the direction of the snake motion if the snake encounters a solid block while in motion. That is move along the x and y axis and adjust x as x + xs: \\
+%     $x>0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) || x<0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) $
+%     \item exception: None
+% \end{itemize}
+% \newpage
+
+% \noindent makeSnake(gameinfo):
+% \begin{itemize}
+%     \item transition: change mat and height to the appropriate snake of length 
+%     \item exception: None
+% \end{itemize}
+
+% \noindent
+% damage( d=0, gameinfo):
+% \begin{itemize}
+%     \item transition:  $player.hp > 0 => player.hp :=  player.hp - d$ $||$\\$player.hp <= 0 => player.delete$
+%     \item exception: None
+% \end{itemize}
+
+\subsection*{Local Functions}
+
+\noindent\textcolor{red}{ move: $\m{ReadMap} \times \m{Mover}$\\
+$\m{move}(gameinfo, player) \equiv$\\
+% transition: Stay stationery at one point and jump at the player when player is within SPIDESENSE blocks. \\
+% (player.x - spider.x) = SPIDESENSE $\Implies$ spider.x, spider,y := player.x, player.y \\
+% transition: If $player$ is not within SPIDERSENSE blocks around the Spider, $xs, ys := 0, 0$. Else, jump towards $player$ with $xs, ys = 2, 2$
+transition: If $player$ is not within SPIDERSENSE blocks, it doesn't move. Else, jump towards $player$\\
+input definition: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+}
+% \noindent move(self, gameinfo, x,y):
+% \begin{itemize}
+%     \item transition: Switches the direction of the snake motion if the snake encounters a solid block while in motion. That is move along the x and y axis and adjust x as x + xs: \\
+%     $x>0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) || x<0 => (self.moving, self.dist := -self.moving,
+% 				self.dist -= self.moving) $
+%     \item exception: None
+% \end{itemize}
+
+\newpage
+
+\section*{Trap Module} %Done
+
+% \subsection*{Interface Module inherits Entity}
+
+% Trap(Entity)
+
+\subsection*{Template Module inherits Entity}
+
+Trap
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+% \subsubsection*{Exported Constants}
+
+% ARROWTRAP = 1\\
+% ARROW = 1\\
+% SPIKETRAP = 1
+
+\subsubsection*{Exported Types}
+
+Trap = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Trap & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Trap & ~\\
+\hline
+% tick & ReadMap, Mover &  & \\
+% \hline
+\end{tabular}
+
+%\subsection*{Semantics}
+
+%\subsubsection*{State Variables}
+
+% $??$: ??\\
+
+% \subsubsection*{State Invariant}
+
+% $\forall (c : \mathbb{N} \mid c \in d : c > 0)$\\
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Trap can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Trap($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self} := \m{new Entity}(x, y, name, height, width, hp, mat)$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Trap$ object with the parameters $x, y, name, height, width, hp, mat$.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Trap object is called, $height$ represents height dimension of Trap, $width$ represented width dimension of Trap, $hp$ represents the health points of Trap, $mat$ represents the loaded image of Trap.
+\end{itemize}
+
+%\subsection*{Local Functions}
+
+%\noindent ??: $?? \times\{\mbox{??},\mbox{??}\}$\\
+%\noindent transition: ??\\
+%\noindent output: ??\\
+
+\newpage
+
+\section*{ArrowTrap Module}
+
+% \subsection*{Template Module inherits Trap(Entity), Entity}
+\subsection*{Template Module inherits Trap}
+
+ArrowTrap
+
+\subsection*{Uses}
+
+% Trap, Entity, Arrow
+Trap, Arrow
+
+\subsection*{Syntax}
+
+\subsection*{Exported Constants}
+
+\textcolor{red}{ARROWSENSE = 4 - the range an arrow trap can detect the player}
+% HEIGHTARROW = image length dimension\\ 
+% WIDTHARROW = image width dimension 
+
+\subsubsection*{Exported Types}
+
+ArrowTrap = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new ArrowTrap & $\mathbb{N}, \mathbb{N}, \mathbb{N}$,image,String,$\mathbb{N},\mathbb{N}$ & ArrowTrap & \\
+% tick & ReadMap, Mover & $\mathbb{B}$ & \\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+setDirection & $\mathbb{Z}$ & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+% $x$: $\mathbb{N}$\\
+% $y$: $\mathbb{N}$\\
+% $hp$: $\mathbb{Z}$\\
+% $mat$: image\\
+% $name$: String\\
+% $height$: $\mathbb{N}$\\
+% $width$: $\mathbb{N}$\\
+$arrowMade$: $\mathbb{B}$ - whether or not the object has shot an arrow\\
+$direction$: $\mathbb{Z}$ - the direction the object is facing
+% $arrow$: Entity\\
+% $posxArrow$: $\mathbb{Z}$\\
+% $posyArrow$: $\mathbb{Z}$
+
+% \subsubsection*{State Invariant}
+
+% $x \geq 0 \land y \geq 0 \land height \geq 0 \land width \geq 0$
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item The ArrowTrap object is positioned within the map's boundaries.
+%     \item The dimensions of the Arrow object image is known. 
+% \end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+% new ArrowTrap($x, y, hp, mat, name, height, width$):
+% \begin{itemize}
+%     \item transition: $\mathit{x}, \mathit{y}, \mathit{hp}, \mathit{mat}, \mathit{name}, \mathit{height}, \mathit{width}, \mathit{arrowMade}, \mathit{posxArrow}, \mathit{posyArrow} := x, y, hp, mat, name, height, width, true, Integer(x-WIDTHARROW/2+width/2), Integer(y-HEIGHTARROW/2+height/2)$
+%     \item output: $out := \mbox{self}$
+%     \item exception: None
+% \end{itemize}
+
+new ArrowTrap($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, arrowMade := \m{new Entity}(x, y, name, height, width, hp, mat), False$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $ArrowTrap$ object with the parameters $x, y, name, height, width, hp, mat$. Set $arrowMade$ to False.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the ArrowTrap object is called, $height$ represents height dimension of ArrowTrap, $width$ represented width dimension of ArrowTrap, $hp$ represents the health points of ArrowTrap, $mat$ represents the loaded image of ArrowTrap.
+\end{itemize}
+
+% \noindent tick($gameinfo, player$):
+% \begin{itemize}
+%     \item transition: $(ArrowTrap.\text{sensor}(gameinfo, player) \land arrowMade \Rightarrow \mathit{arrow}, \mathit{arrowMade} := \text{ Arrow.arrow}(''name.FILE'', posxArrow, posyArrow), false)$
+%     \item output: $out := Arrow, \text{Arrow.arrowMove}(gameinfo, player.x), true$
+%     \item exception: None
+% \end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $\m{sense}(gameinfo, player) \land \lnot arrowMade \Implies $ Create Arrow $ent$ in front of object, add with $gameinfo.\m{add}(ent)$, $ent.\m{throw}(direction, 0)$, $arrowMade := True$.
+    \item \textcolor{red}{transition: If $player$ is ARROWSENSE blocks in front of the object and $\lnot arrowMade$, create an $Arrow$ object, throw it towards $player$, add it to $gameinfo$, set $arrowMade$ to True
+    \item exception: None}
+    \item input definitions: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent setDirection($d$):
+\begin{itemize}
+    % \item transition: $direction := d \hphantom{1} direction = 1 \rightarrow flipImage(True, False)$.
+    \item \textcolor{red}{transition: Set $direction$ to $d$. If $direction = 1$, flip $mat$ horizontally}
+    \item exception: None
+    \item input definitions: $d$ represents the direction of the object to be set to. 
+\end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent $\text{sensor}: \text{ReadMap} \times \text{Mover} \rightarrow \mathbb{B}$\\
+% \noindent $\text{sensor}(gameinfo, player) \equiv (y<player.y+player.height \land player.y < y+height \Rightarrow (abs(x-player.x) \leq 4*32 \land abs(player.x - x) \leq 4*32 \Rightarrow true) | y \geq player.y+player.height \lor player.y \geq y+height \lor (abs(x-player.x) \geq 4*32 \lor abs(player.x - x) \geq 4*32) \Rightarrow false)$
+
+% \noindent sense: $\m{ReadMao} \times \m{Mover} \rightarrow \mathbb{B}$\\
+% $\m{move}(gameinfo, player) \equiv$\\
+% output: If $player$ is at the same vertical block level, and at most ARROWSENSE blocks in front of the object with no blocks between them, $out := True$. Else, $out = False$\\
+
+\newpage
+
+\section*{Arrow Module}
+
+% \subsection*{Template Module inherits Entity}
+\subsection*{\textcolor{red}{Template Module inherits Throwable}}
+
+Arrow
+
+\subsection*{Uses}
+
+Throwable
+
+\subsection*{Syntax}
+
+\subsection*{Exported Constants}
+
+%ARROWSPEED = 2\\
+ARROWDAMAGE = 2 - the amount of damage an arrow deals
+
+\subsubsection*{Exported Types}
+
+Arrow = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Arrow & $\mathbb{N}, \mathbb{N}, \mathbb{N}$,image,String,$\mathbb{N},\mathbb{N}$ & Arrow & \\
+\hline
+pickup & ~ & ~ & ~\\
+\hline
+putDown & ~ & ~ & ~\\
+\hline
+\textcolor{red}{tick} & \textcolor{red}{ReadMap, Mover} & \textcolor{red}{ ~} & \textcolor{red}{red}{~}\\
+% tick & ReadMap, Mover & &\\
+% arrowMove & ReadMap, $\mathbb{Z}$ & &\\
+% arrow & String, $\mathbb{Z}, \mathbb{Z}$ & Entity & \\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$playerOwned$: $\mathbb{B}$ - whether or not the arrow is thrown by the player
+
+% $x$: $\mathbb{N}$\\
+% $y$: $\mathbb{N}$\\
+% $hp$: $\mathbb{N}$\\
+% $mat$: image\\
+% $name$: String\\
+% $height$: $\mathbb{N}$\\
+% $width$: $\mathbb{N}$\\
+% $arrowTime$: $\mathbb{N}$
+
+% \subsubsection*{State Invariant}
+
+% $x \geq 0 \land y \geq 0 \land height \geq 0 \land width \geq 0$
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item The Arrow object moves only in one direction after being shot.
+% \end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Arrow($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, playerOwned := \m{new Throwable}(x, y, name, height, width, hp, mat), False$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create an $Arrow$ object with the parameters $x, y, name, height, width, hp, mat$. Set $playerOWned$ to False.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Arrow object is called, $height$ represents height dimension of Arrow, $width$ represented width dimension of Arrow, $hp$ represents the health points of Arrow, $mat$ represents the loaded image of Arrow.
+\end{itemize}
+
+\noindent pickup():
+\begin{itemize}
+    % \item transition: $\m{Thowable}.\m{pickup}(). \hphantom{1} playerOwned := True$
+    \item \textcolor{red}{transition: Use inherited pickup(). Set $playerOwned$ to True}
+    \item exception: None
+\end{itemize}
+
+\noindent putDown():
+\begin{itemize}
+    % \item transition: $\m{Thowable}.\m{putDown}(). \hphantom{1} playerOwned := False$
+    \item \textcolor{red}{transition: Use inherited putdown(). Set $playerOwned$ to False}
+    \item exception: None
+\end{itemize}
+
+\noindent tick(gameinfo, player):
+\begin{itemize}
+    % \item transition: $\m{Thowable}.\m{tick}(gameinfo, player). \hphantom{1} xs \lnot 0 \Implies (\m{overlap}(player) \land \lnot playerOwned \Implies player.\m{damage}(\text{ARROWDAMAGE})) \lor$\
+    % \item transition: $\m{Thowable}.\m{tick}(gameinfo, player).$ If moving horizontally, deals ARROWDAMAGE damage to the first player or enemy the arrow collides with and stops. If $playerOwned$, it ignores the player.
+    \item \textcolor{red}{transition: Use inherited tick(). If moving horizontally, deal ARROWDAMAGE damage to the first $Mover$ or $Enemy$ object the arrow collides with and stop. If $playerOwned$, it ignores $Mover$ objects.}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+% \noindent throw():
+% \begin{itemize}
+%     \item transition: $\m{Throwable}.\m{throw}(\text{ARROWSPEED}, 0)$
+%     \item exception: None
+% \end{itemize}
+% tick(gameinfo, player):
+% \begin{itemize}
+%     \item transition: arrow object removed
+%     \item output: $out :=$ None
+%     \item exception: None
+% \end{itemize}
+% \noindent
+% arrowMove(gameinfo, playerPosition):
+% \begin{itemize}
+%     \item transition: $(playerPosition > x \land \text{continue moving until hitting a solid block} \Rightarrow \mathit{x} := x + \text{ARROWSPEED} \mid playerPosition < x \land \text{continue moving until hitting a solid block} \Rightarrow \mathit{x} := x - \text{ARROWSPEED} \mid playerPosition \equiv x \lor x \equiv \text{solid block position} \Rightarrow \text{Stop moving})$
+%     \item output: $out :=$ None
+%     \item exception: None
+% \end{itemize}
+% \noindent
+% Arrow(name, posxArrow, posyArrow):
+% \begin{itemize}
+%     %\item transition: $Entity.makeEnt(''name.FILE'', posxArrow, posyArrow)?? :=$
+%     \item output: $out := Entity.\text{makeEnt}(name, posxArrow, posyArrow)$
+%     \item exception: None
+% \end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent destroyArrow: $\text{ReadMap} \times \text{Mover} \rightarrow \text{remove arrow}$\\
+% \noindent $\text{destroyArrow}(gameinfo, player) \equiv (Entity.\text{Arrow}.\text{overlap}(player) \equiv true \Rightarrow \text{remove Arrow} \land Mover.\mathit{player}.\text{damage(ARROWDAMAGE)})$
+
+\newpage
+
+\section*{Spikes Module}
+
+\subsection*{Template Module inherits Trap}%(Entity)}
+
+Spikes
+
+\subsection*{Uses}
+
+Trap
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+SPIKEDAMAGE = 4 - the amount of damage spikes deals
+
+\subsubsection*{Exported Types}
+
+Spike = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+% new Spike & $\mathbb{N}, \mathbb{N}, \mathbb{N}$, image, String,$\mathbb{N},\mathbb{N}$ & Spike & \\
+% tick & ReadMap, Mover & &\\
+\textcolor{red}{new Spikes} & \textcolor{red}{$\mathbb{N}, \mathbb{N}, \mathbb{N}$,image,String,$\mathbb{N},\mathbb{N}$} & \textcolor{red}{Spikes} & \\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+% \subsubsection*{State Variables}
+
+% $x$: $\mathbb{N}$\\
+% $y$: $\mathbb{N}$\\
+% $hp$: $\mathbb{Z}$\\
+% $mat$: image\\
+% $name$: String\\
+% $height$: $\mathbb{N}$\\
+% $width$: $\mathbb{N}$
+
+% \subsubsection*{State Invariant}
+
+% $x \geq 0 \land y \geq 0 \land height \geq 0 \land width \geq 0$
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item Spike Object is placed within the map boundaries.
+% \end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+% new Spike($x, y, hp, mat, name, width, height$):
+% \begin{itemize}
+%     \item transition: $\mathit{x}, \mathit{y}, \mathit{hp}, \mathit{mat}, \mathit{name}, \mathit{height}, \mathit{width} := x, y, hp, mat, name, height, width$
+%     \item output: $out := self$
+%     \item exception: None
+% \end{itemize}
+new Spikes($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self} := \m{new Trap}(x, y, name, height, width, hp, mat)$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Spikes$ object with the parameters $x, y, name, height, width, hp, mat$.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Spikes object is called, $height$ represents height dimension of Spikes, $width$ represented width dimension of Spikes, $hp$ represents the health points of Spikes, $mat$ represents the loaded image of Spikes.
+\end{itemize}
+
+\noindent
+tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $\text{overlap}(player) \land player.ys > 0 \Implies player.\m{damage}(\text{SPIKEDAMAGE})$
+    \item \textcolor{red}{transition: If $player$ falls on a spikes object, deal SPIKEDAMAGE damage to it}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{Weapon Module}
+
+\subsection*{Template Module}
+
+Weapon
+
+\subsection*{Uses}
+
+Entity
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Weapon = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Weapon & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Weapon & ~\\
+\hline
+tick & ReadMap, Mover & ~ & ~\\
+\hline
+swing & ~ & ~ & ~\\
+\hline
+carry & $\mathbb{Z}$, $\mathbb{Z}$ & ~ & ~\\
+\hline
+flip & ~ & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$damage$: $\mathbb{N}$ - the amount of damage the weapon deals\\
+$speed$: $\mathbb{N}$ - the maximum amount of time until the weapon can be used again\\
+$activeFrames$: $\mathbb{N}$ - the maximum amount of time for the weapon to stay out\\
+$time$: $\mathbb{N}$ - the amount of time remaining until the weapon can be used again\\
+$active$: $\mathbb{N}$ - the amount of time remaining for the weapon to stay out\\
+$direction$: $\mathbb{Z}$ - the direction the object is facing
+
+\subsubsection*{State Invariant}
+
+$0 \leq time \leq \text{SPEED} \land 0 \leq active \leq \text{ACTIVEFRAMES}$
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Weapon can only be instantiated by one of its subclasses.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Weapon($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, damage, speed, activeFrames, time, active := \\ \m{new Entity}(x, y, name, height, width, hp, mat), 0, 0, 0, 0, 0$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Weapon$ object with the parameters $x, y, name, height, width, hp, mat$. Set $damage, speed, activeFrames, time, active$ to 0, 0, 0, 0, 0.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Weapon object is called, $height$ represents height dimension of Weapon, $width$ represented width dimension of Weapon, $hp$ represents the health points of Weapon, $mat$ represents the loaded image of Weapon.
+\end{itemize}
+
+\noindent tick($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $time := time - 1$. $active > 0 \Implies deal damage\text{ to all overlapping Enemy objects. } active := active - 1 \mid True \Implies \text{remove from } gameinfo \text{ and } player$.
+    \item \textcolor{red}{transition: If $time > 0$, decrement $time$. If $active > 0$, deal $damage$ to all overlapping $Enemy$ objects, decrement $active$. Else, remove from $gameinfo$ and $player$}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent swing($gameinfo$):
+\begin{itemize}
+    % \item transition: $time = 0 \Implies time, active := speed, activeFrames$. Add to $gameinfo$.
+    \item \textcolor{red}{transition: If $time = 0$, set $time, active$ to $speed, activeFrames$. Add to $gameinfo$.}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\noindent carry($a, b$):
+\begin{itemize}
+    % \item transition: $ x, y := x + a, y + b$
+    \item transition: Use inherited move()
+    \item exception: None
+    \item input definitions: $a$ represents the x-distance moved of object when being carried, $b$ represent the y-distance of the object when being carrried. 
+\end{itemize}
+
+\noindent flip():
+\begin{itemize}
+    % \item transition: $Entity.\m{flipImage}(). direction := -direction$
+    \item \textcolor{red}{transition: Flip $mat$ horizontally. Set $direction$ to $-direction$}
+    \item exception: None
+\end{itemize}
+
+% \subsection*{Local Functions}
+
+% \noindent move: $\m{ReadMap} \times \mathbb{Z}$\\
+% $\m{move}(gameinfo, b) \equiv$\\
+% transition: Move along the y axis. $y, dist := y + b, dist + b$. If the entity collides with a block, $moving := 0$ and $\m{makeRope}(gameinfo)$.\\
+
+\newpage
+
+\section*{Whip Module}
+
+\subsection*{Template Module}
+
+Whip
+
+\subsection*{Uses}
+
+Weapon
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+
+DAMAGE = $4$ - the amount of damage a whip deals\\
+SPEED = $45$ - the maximum amount of time until a whip can be used again\\
+ACTIVEFRAMES = $45$ - the maximum amount of time for a whip to stay out
+
+\subsubsection*{Exported Types}
+
+Whip = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Whip & $\mathbb{N}$, $\mathbb{N}$, string, $\mathbb{N}$, $\mathbb{N}$, $\mathbb{N}$, image & Whip & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Access Routine Semantics}
+
+new Whip($x, y, name, height, width, hp, mat$):
+\begin{itemize}
+    % \item transition: $\mathit{self}, damage, speed, activeFrames := \\ \m{new Weapon}(x, y, name, height, width, hp, mat), \text{DAMAGE}, \text{SPEED}, \text{ACTIVEFRAMES}$
+    % \item output: $out := \mathit{self}$
+    \item \textcolor{red}{output: Create a $Whip$ object with the parameters $x, y, name, height, width, hp, mat$. Set $damage, speed, activeFrames$ to DAMAGE, SPEED, ACTIVEFRAMES.}
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $name$ represents what the Whip object is called, $height$ represents height dimension of Whip, $width$ represented width dimension of Whip, $hp$ represents the health points of Whip, $mat$ represents the loaded image of Whip.
+\end{itemize}
+
+\newpage
+
+\section*{Mover Module}
+
+\subsection*{Template Module}
+
+Mover
+
+\subsection*{Uses}
+
+Entity
+\subsection*{Syntax}
+
+\subsubsection*{Exported Constants}
+INVINCIBILITYTIME = 270 - the maximum amount of time until the player can be damaged again\\
+STOMPDAMAGE = 1 - the amount of damage the player does when stomping on an $Enemy$ object\\
+FALLDAMAGE = 1 - the amount of damage the player takes when falling to the ground too fast\\
+GRAVITY = 3 - the speed of an object falling due to gravity\\
+MAXJUMP = 24 - the maximum distance the player can reach by jumping\\
+% WIDTH = character image width\\
+% HEIGHT = character image length\\
+STARTINGHP = 4 - the number of hp the player starts with\\
+STARTINGBOMBS = 4 - the number of bombs the player starts with\\
+STARTINGROPES = 4 - the number of ropes the player starts with
+
+% \subsubsection*{Exported Types}
+
+% State=\{standing, walking, falling, climbing, crouching\}\\
+% Mover=?\\
+% KeyCode=\{all keyboard inputs\}
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new Mover & $\mathbb{N}, \mathbb{N}, \mathbb{Z}, \mathbb{Z}$ & Mover & ~\\
+\hline
+position & ~ & $[ \mathbb{N}, \mathbb{N} ]$ & ~\\
+\hline
+damage & $\mathbb{N}$ & ~ & ~\\
+\hline
+loop & ReadMap & ~ & ~\\
+\hline
+% gravity & ReadMap & ~ & ~\\
+% \hline
+% jump & ReadMap, $\mathbb{Z}$ & ~ & ~\\
+% \hline
+% move & ReadMap, $\mathbb{Z}, \mathbb{Z}$ & ~ & ~\\
+% \hline
+% climb & ReadMap, $\mathbb{Z}$ & ~ & ~\\
+% \hline
+emptyHand & ~ & ~ & ~\\
+\hline
+% changeState & State, $\mathbb{Z}$ & ~ & ~\\
+% \hline
+% controls & KeyCode, ReadMap & ~ & ~\\
+% \hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Environmental Variables}
+
+keyboard: Scanner(System.in) - reading inputs from the keyboard
+% Screen: Display the game and messages.\\
+% Window: a portion of computer screen to display the game screen.
+
+\subsubsection*{State Variables}
+
+%$state$: State\\
+$xs$: $\mathbb{Z}$ - movement speed in the x direction\\
+$ys$: $\mathbb{Z}$ - movement speed in the y direction\\
+$invincibility$: $\mathbb{Z}$ - the amount of time remaining until the player can be damaged again\\
+$jumpDist$: $\mathbb{Z}$ - the distance the player has jumped\\
+%$jumpSpeed$: $\mathbb{Z}$\\
+$x$: $\mathbb{N}$ - x coordinate\\
+$y$: $\mathbb{N}$ - y coordinate\\
+$hp$: $\mathbb{Z}$ - hit points\\
+$direction$: $\mathbb{Z}$ - the direction the player is facing\\
+$gold$: $\mathbb{Z}$ - the amount of gold the player has\\
+%$media$: set of FILE\\
+$image$: image - display image\\
+$hand$: $Throwable$ - the object in the player's hand\\
+$bombs$: $\mathbb{Z}$ - the number of bombs the player has\\
+$ropes$: $\mathbb{Z}$ - the number of ropes the player has\\
+$adjustCamera$: $\mathbb{Z}$ - the amount to adjust the camera
+
+\subsubsection*{State Invariant}
+
+%$\forall (c : \mathbb{N} \mid c \in d : c > 0)$\\
+$jumpDist \leq MAXJUMP \land jumpSpeed \leq 2$
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    % \item Only known keys (as defined by KeyCode) will be put into the keyboard as events to be processed.
+    \item Mover objects moves within the map boundaries and can't move across solid blocks.
+    \item Mover constructor is called once only for each game instance before any other access routine is called for that object or any other object in the game.
+    \item Assume that view/interface game instance is already initialized before calling Mover constructor.
+    \item Assume the media content required for Mover is loaded in the form of list of FILES.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new Mover($x,y,direction,speed$):
+\begin{itemize}
+    % \item transition: $\mathit{state}, \mathit{xs}, \mathit{ys}, \mathit{invincibility}, \mathit{jumpDist}, \mathit{jumpSpeed}, \mathit{x}, \mathit{y}, \mathit{hp}, \mathit{direction}, \mathit{gold}, \mathit{media}, \mathit{image}, \mathit{hand} := State.standing, 0, 0, 0, 0, 0, x, y, -1, 0, <FILES>, FILES[0], Entity.\text{makeEnt}(''name.FILE'', x, y)$
+    % \item transition: $xs, ys, invincibility, x, y, hp, direction, gold, image, hand, bombs, ropes, adjustCamera  := 0, 0, 0, x, y, \text{STARTINGHP}, direction, 0, \text{idle image}, EmptyHand, \text{STARTINGBOMBS}, \\ \text{STARTINGROPES}, 0$
+    % \item output: $out := self$
+    \item output: Create a $Mover$ object with the parameters $x, y, direction, speed$. Set the remaining state variables to their inital values.
+    \item exception: None
+    \item input definitions: $x$ represents x-position, $y$ represents y-position, $direction$ represents the direction of object when initialized, $speed$ represents speed of the Mover object when initialized.
+\end{itemize}
+
+\noindent position():
+\begin{itemize}
+    % \item output: $out := (x,y)$
+    \item output: $x, y$
+    \item exception: None
+\end{itemize}
+
+\noindent damage(d):
+\begin{itemize}
+    % \item transition: $(invincibility > 0 \Implies \text{void}() | invincibility \leq 0 \Rightarrow \mathit{hp}, \mathit{invincibility} := hp-d, INIVICIBILITYTIME)$
+    % \item transition: $(invincibility \leq 0 \Implies hp, invincibility := hp - d, \text{INIVICIBILITYTIME})$
+    \item \textcolor{red}{transition: If $invincibility \leq 0$, reduce $hp$ by $d$, set $invincibility$ to INIVICIBILITYTIME}
+    % \item output: $out :=$ None
+    \item exception: None
+    \item input definitions: $d$ represent the damage value affecting the object. 
+\end{itemize}
+
+\noindent loop($gameinfo$):
+\begin{itemize}
+    % \item transition: updates the Mover object state variable by accepting user control inputs from the keyboard and game logic interactions and expectations.
+    % \item transition: Modify movement ($x, y, xs, ys, direction$), interpret controls, reduce $invincibility$, increase $adjustCamera$ magnitude
+    \item \textcolor{red}{transition: The player is affected by gravity, interpret controls, move the player, decrement $invincibility$, increment $adjustCamera$ magnitude}
+    % \item output:= produces image interface updates on the screen. 
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\noindent emptyHand():
+\begin{itemize}
+    % \item transition: $\mathit{hand} := Entity.\text{makeEnt}("emptyHand", x, y)$
+    \item \textcolor{red}{transition: Set $hand$ to an $EmptyHand$ object}
+    % \item output: $out :=$None
+    \item exception: None
+\end{itemize}
+
+% \noindent changeState($state, dir$):
+% \begin{itemize}
+%     \item transition: $\mathit{state}, \mathit{direction} := state, dir$
+%     \item output: $out :=$ Updates the screen with the appropriate image file of the corresponding object State state variable value.
+%     \item exception: None
+% \end{itemize}
+
+\subsection*{Local Functions}
+
+% \noindent noSolidBlocksX: $\mathbb{Z} \rightarrow \mathbb{B}$\\
+% \noindent noSolidBlocksX(xpos) $\equiv$\\
+% \noindent output: true if no solid blocks in the following xpos moves else false.\\
+% \\
+% \noindent noSolidBlocksY: $\mathbb{Z} \rightarrow \mathbb{B}$\\
+% \noindent noSolidBlocksY(ypos) $\equiv$\\
+% \noindent output: true if no solid blocks in the following ypos moves else false.\\
+
+\noindent gravity($gameinfo$):
+\begin{itemize}
+    % \item transition: updates the Mover object state variables with the effect of GRAVITY when the instance is changing speed and position in the y direction. 
+    \item \textcolor{red}{transition: Modify $ys$ with relation to gravity, jumping, and climbing}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\noindent jump($gameinfo, maxjump$):
+\begin{itemize}
+    % \item transition: $jumpDist, ys := 0, ys-GRAVITY$
+    \item \textcolor{red}{transition: Set $jumpDist, ys$ to 0, -GRAVITY}
+    % \item output: $out :=$ changeState(State.falling, direction)
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $maxjump$ represents the maximum jumping distance. 
+\end{itemize}
+
+\noindent move($gameinfo, x, y$):
+\begin{itemize}
+    % \item transition: All state variable updates will be reflected with the corresponding State update on the screen. \space If $x>0 \land noSolidBlocksX(x+x)$ then object moves to the right. \space If $x<0 \land noSolidBlocksX(x+x)$ then object moves to the left. \space If $y>0 \land noSolidBlocksY(y+y)$ then inflict STOMPDAMAGE upon collision with enemy or inflict gravity damage on the object when $ys \geq 6$. \space If $y<0 \land noSolidBlocksY(y+y)$ then object decreases position in the y direction.
+    \item \textcolor{red}{transition: Move along the x and y axis If the player collides with a solid block in a direction, set the appropriates $xs$ or $ys$ to 0. If the mover lands on an $Enemy$ object, deal STOMPDAMAGE to it and bounce off. If the mover lands on a solid block with $ys \geq 6$, take FALLDAMAGE. Move $hand$ with the player}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $x$ represents the new x-position of object after moving, $y$ represents the new y-position of object after moving. 
+\end{itemize}
+
+\noindent
+climb($gameinfo, y$):
+\begin{itemize}
+    % \item transition: If $y>0 \land noSolidBlocksY(y+y)$ then object increases position in the y direction along the rope object within the object range. \space If $y<0 \land noSolidBlocksY(y+y)$ then object decreases position in the y direction along the rope object within the object range. 
+    \item \textcolor{red}{transition: Move along the y axis. If the player collides with a solid block or would no longer be holding a $Rope$ object, set $ys$ to 0. Move $hand$ with the player}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $y$ represents the new y-position of object after climbing.
+\end{itemize}
+
+\newpage
+\noindent controls($key, gameinfo$):
+\begin{itemize}
+    % \item transition: $(key \equiv F12 \Rightarrow \text{display fullscreen} | key \equiv TAB \Rightarrow collect| key \equiv LEFTSHIFT \Rightarrow \text{pickup if hand is empty else throw} | key \equiv LEFTARROW \Rightarrow \text{walks left} | key \equiv RIGHTARROW \Rightarrow \text{walks right} | key \equiv UPARROW \Rightarrow \text{moves up along a rope} | key \equiv DOWNARROW \Rightarrow \text{moves down along a rope of crouches} | key \equiv SPACE \Rightarrow \text{jump} | key \equiv ESC \Rightarrow \text{exit window of game screen} | key \equiv  q \Rightarrow \text{display Mover direction, state, x and y direction speed} | key \equiv b \Rightarrow \text{place bomb} | key \equiv v \Rightarrow \text{place rope} | key \equiv \text{key released} \Rightarrow \text{Mover object walks if }xs \neq 0 \text{ else Mover object stands}) $
+    \item transition: \begin{table}[!h]
+        \centering
+        \begin{tabular}{|c|c|}
+            \hline
+            Condition & Action\\
+            \hline
+            $key = TAB$ & Use nearby useable $Entity$ \\
+            \hline
+            $key = LEFTSHIFT \land hand \neq emptyHand$ & Throw $hand$\\
+            \hline
+            $key = LEFTSHIFT \land hand = emptyHand$ & Swing $Whip$\\
+            \hline
+            $key = LEFTARROW$ & Move left\\
+            \hline
+            $key = RIGHTARROW$ & Move right\\
+            \hline
+            $key = UPARROW$ & Move/climb up\\
+            \hline
+            $key = DOWNARROW$ & Move/climb down\\
+            \hline
+            $key = SPACE$ & Jump\\
+            \hline
+            $key = ESC$ & Terminate system\\
+            \hline
+            $key = B \land bombs > 0$ & Create $Bomb$ at mover\\
+            \hline
+            $key = V \land ropes > 0$ & Create $Rope$ at mover\\
+            \hline
+        \end{tabular}
+    \end{table}
+    % \item output: $out :=$ Displays the Mover object changes on the screen
+    \item exception: None
+    \item input definitions: $key$ represents the key press input from the keyboard by the player of the game, $gameinfo$ represents the state of the game Map.
+\end{itemize}
+
+\newpage
+
+\section*{Display Module}
+
+\subsection*{Module}
+
+Display
+
+\subsection*{Uses}
+
+Entities, Mover, ReadMap
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+Display = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+% new Display & resources.font &  & \\
+% \hline
+new Display & ~ & ~  & Display\\
+\hline
+% showent &  Mover & & \\
+% \hline
+sign & Readmap & ~ & ~\\
+\hline
+resourceDisp & Mover & ~ & ~\\
+\hline
+goldDisp & Mover & ~ & ~\\
+\hline
+gameover & Mover & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{Enviroment Variables}
+screen: It is the game screen that is manipulated by the following functions to alter display. This is update by a precise frame rate to depict various game objects on the game screen.
+
+\subsubsection*{State Variables}
+
+% $textfontsize: resources.fontsize$ \\
+% $w: sign positioning per game entity on the screen$\\
+% goldptpos: gold points display can be coordinates in the corner of the screen\\
+% gameoverpos: game over message in the middle (coordinates) of the screen
+
+% \subsubsection*{State Invariant}
+
+% textfontsize must only use available font text styles.
+
+% \subsubsection*{State Variables}
+
+% $position$: $\mathbb{N}, \mathbb{N}$
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item Postions are updated as per the screen updation. Each position assigned is relative to that entity and is local to that function.
+% \end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+% new Display($textfontsize,position$)
+% \begin{itemize}
+%     % \item transition: $self := new Display(textfontsize,position) $
+%     \item output: Create a $Display$ object with the parameters $textfontsize, position$.
+%     \item exception: None
+% \end{itemize}
+
+new Display()
+\begin{itemize}
+    % \item transition: $self := new Display(textfontsize,position) $
+    \item output: Create a $Display$ object
+    \item exception: None
+\end{itemize}
+
+% \noindent showent($gameinfo$):
+% \begin{itemize}
+%     \item transition: $textfontsize, position := screen(resources.font, entities.position)$
+%     \item exception: None\\
+% \end{itemize}
+
+\noindent sign($gameinfo, player$):
+\begin{itemize}
+    % \item transition: $textfontsize, position := screen(w, 250)$
+    \item \textcolor{red}{transition: Show overlapping $Sign$ object messages at the bottom of the screen}
+    \item exception: None
+    \item input definitions: $gameinfo$ represents the state of the game Map, $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent resrouceDisp($player$):
+\begin{itemize}
+    % \item transition: $ position := screen(player.media, player.position)$
+    \item \textcolor{red}{transition: Show $player$ hp, bombs, and ropes at the top left of screen}
+    \item exception: None
+    \item input definitions: $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent goldDisp($player$)
+\begin{itemize}
+    % \item transition: $position := screen(textfont,goldptpos)$
+    \item \textcolor{red}{transition: Show $player$ gold under $player$ hp}
+    \item exception: None
+    \item input definitions: $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\noindent gameover($player$):
+\begin{itemize}
+    % \item transition: $position:= screen(textfont, gameoverpos)$
+    \item \textcolor{red}{transition: Show a game over message on the screen}
+    \item exception: None
+    \item input definitions: $player$ represents the Mover object that is the player of the game controls.
+\end{itemize}
+
+\newpage
+
+\section*{ReadMap Module}
+
+\subsection*{Template Module}
+
+ReadMap
+
+\subsection*{Uses}
+
+None
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Types}
+
+ReadMap = ?
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+new ReadMap & string & ReadMap & ~\\
+\hline
+add & Entity & ~ & \textcolor{red}{~}\\
+\hline
+rem & Entity & ~ & \textcolor{red}{~}\\
+\hline
+entities & ~ & seq of Entity & ~\\
+\hline
+enemies & ~ & seq of Enemy & ~\\
+\hline
+solid & $\mathbb{N}$, $\mathbb{N}$ & $\mathbb{B}$ & ~\\
+\hline
+destroyBlock & $\mathbb{N}$, $\mathbb{N}$ & ~ & \textcolor{red}{~}\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$gameMap$: seq of (seq of $\{ image, \mathbb{N}, \mathbb{N}, \mathbb{B}, \mathbb{B}, string \}$ (image, x, y, transparent, solid, name)) defined as Block - all blocks in the game\\
+$entList$: seq of Entity - the $Entity$ objects in the game\\
+$enemyList$: seq of Enemy - the $Enemy$ objects in the game
+
+\subsubsection*{Assumptions}
+
+\begin{itemize}
+    \item Map files contain a list of Entity names and their locations, and 2D sequence of map blocks.
+\end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+new ReadMap($f$):
+\begin{itemize}
+    % \item transition: Initialize $gameMap$ and $entList$ based on the given map file $f$
+    % \item output: $out := self$
+    \item \textcolor{red}{output: Create a $ReadMap$ object from the data in the map file $f$.}
+    \item exception: None
+    \item input definitions: $f$ represents the name of the map file to be read.
+\end{itemize}
+
+\noindent add($ent$):
+\begin{itemize}
+    % \item transition: $entList, enemyList := entList || [ent], ent \text{ is a } Enemy \Implies enemyList || [ent]$
+    \item \textcolor{red}{transition: Add $ent$ to $entList$. If $ent$ is an $Enemy$ object, add $ent$ to $enemyList$}
+    \item exception: \textcolor{red}{None}
+    \item input definitions: $ent$ represent an Entity object to be added to the map for display.
+\end{itemize}
+
+\noindent rem($ent$):
+\begin{itemize}
+    % \item transition: $entList, enemyList := entList[0,,i] || entList[i + 1, |entList|]$ for $entList[i] = ent, ent \text{ is a } Enemy \Implies enemyList[0,,i] || enemyList[i + 1, |enemyList|]$ for $enemyList[i] = ent$
+    \item \textcolor{red}{transition: Remove $ent$ from $entList$. If $ent$ is an $Enemy$ object, remove $ent$ from $enemyList$}
+    \item exception: \textcolor{red}{None}
+    \item input definitions: $ent$ represent an Entity object to be removed from the map to no longer display.
+\end{itemize}
+
+\noindent entities():
+\begin{itemize}
+    \item output: $entityList$ 
+    \item exception: None
+\end{itemize}
+
+\noindent enemies():
+\begin{itemize}
+    \item output: $enemyList$ 
+    \item exception: None
+\end{itemize}
+
+\noindent solid($x, y$):
+\begin{itemize}
+    % \item output: $out := gameMap[a][b] \text{ is solid } \Implies True \mid True \Implies False$ 
+    \item \textcolor{red}{output: Whether or not the block at $x, y$ is solid}
+    \item exception: \textcolor{red}{None}
+    \item input definitions: $x$ represents the x-position to be tested, $y$ represents the y-position to be tested. 
+\end{itemize}
+
+\noindent destroyBlock($x, y$):
+\begin{itemize}
+    % \item transition: set the block at $gameMap[a][b]$ to $\lnot$transparent and $\lnot$solid
+    \item \textcolor{red}{transition: Set the block at $x, y$ to $\lnot$transparent and $\lnot$solid}
+    \item exception: \textcolor{red}{None}
+    \item input definitions: $x$ represents the x-position to destroy a block from, $y$ represents the y-position to destroy a block from.
+\end{itemize}
+
+\newpage
+
+\section*{Main Module}
+
+\subsection*{Module}
+
+Main
+
+\subsection*{Uses}
+
+Entities, Mover, Display, ReadMap
+
+\subsection*{Syntax}
+
+\subsubsection*{Exported Access Programs}
+
+\begin{tabular}{| l | l | l | l |}
+\hline
+\textbf{Routine name} & \textbf{In} & \textbf{Out} & \textbf{Exceptions}\\
+\hline
+main & ~ & ~ & ~\\
+\hline
+\end{tabular}
+
+\subsection*{Semantics}
+
+\subsubsection*{State Variables}
+
+$gameinfo$: ReadMap - the game level\\
+$newmover$: Mover - the player character\\
+$display$: Display - the display
+
+% \subsubsection*{Assumptions}
+
+% \begin{itemize}
+%     \item Only known keys (as defined by KeyCode) will be put into the Key object as events to be processed.
+% \end{itemize}
+
+\subsubsection*{Access Routine Semantics}
+
+main():
+\begin{itemize}
+    % \item transition: $gameinfo := \m{new ReadMap}()$\\
+    %                     $newmover := \m{new Mover}()$\\
+    %                     $display := \m{new Display}()$\\
+    %                     % While the game is running: $newmover.\mbox{loop}(gameinfo, screen)$, display $gameinfo$, display all $\mbox{Entities}$, 
+    %                     While the game is running, $newmover.$loop($gameinfo$), display $gameinfo$, display every Entity, tick($gameinfo, newmover$) every Entity, display $display$.
+    \item transition: Create $gameinfo, newmover, display$.\\
+                        % While the game is running: $newmover.\mbox{loop}(gameinfo, screen)$, display $gameinfo$, display all $\mbox{Entities}$, 
+                        While the game is running, loop $newmover$, display $gameinfo$, display the $Entity$ objects, tick the $Entity$ objects, show $display$
+    \item exception: None
+\end{itemize}
+
+\end{document}
